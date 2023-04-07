@@ -1,16 +1,17 @@
+// 左侧导航栏组件
 <template>
-  <div class="menu-left">
-    <div class="menu-icon">
+  <div class="menu_left_layout">
+    <div class="menu_icon">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-caidan"></use>
       </svg>
     </div>
-    <div class="menu-item">
+    <div class="menu_item">
       <button v-for="m in menuItemList" :key="m.id">
         <svg class="icon" aria-hidden="true">
           <use :xlink:href="'#icon-' + m.icon"></use>
         </svg>
-        {{ m.title }}
+        <span>{{ m.title }}</span>
       </button>
     </div>
   </div>
@@ -27,7 +28,6 @@ export default {
         { id: "003", icon: "icon_huochepiao", title: "火车票" },
         { id: "004", icon: "shuji", title: "攻略·景点" },
       ],
-      title: "",
     };
   },
 };
@@ -35,8 +35,8 @@ export default {
 
 <style scoped>
 /* 左侧菜单栏整体布局样式 */
-.menu-left {
-  width: 12%;
+.menu_left_layout {
+  width: 50px;
   height: 100%;
   position: fixed;
   left: 0;
@@ -45,31 +45,33 @@ export default {
   display: flex;
   flex-direction: column;
 }
-/* .menu-left:hover {
-  width: 15%;
-} */
+.menu_left_layout:hover {
+  width: 165px;
+}
 
 /* 菜单图标 */
-.menu-icon {
+.menu_icon {
   width: 100%;
   height: 60px;
+  cursor: pointer;
 }
-.menu-icon .icon {
+.menu_icon .icon {
   width: 20px;
   height: 20px;
-  margin: 15px 0 0 30px;
+  margin: 20px 0 0 15px;
 }
-.menu-icon .icon:hover {
-  cursor: pointer;
+
+.menu_left_layout:hover .menu_icon .icon {
+  margin: 20px 0 0 30px;
 }
 
 /* 菜单项布局样式 */
-.menu-item {
+.menu_item {
   display: flex;
   flex-direction: column;
 }
 
-.menu-item button {
+.menu_item button {
   height: 40px;
   width: 80%;
   margin: 0 auto;
@@ -81,18 +83,25 @@ export default {
   padding-left: 12px;
   line-height: 40px;
   background: none;
+  cursor: pointer;
 }
-.menu-item .icon {
+.menu_item .icon {
   width: 20px;
   height: 20px;
 }
-
-.menu-item button:hover {
-  background-color: #f3f8fd;
-  cursor: pointer;
+.menu_item button span {
+  display: none;
 }
 
-.menu-item button:focus {
+.menu_item button:hover {
+  background-color: #f3f8fd;
+}
+.menu_left_layout:hover button span {
+  display: inline;
+  margin-left: 5px;
+}
+
+.menu_item button:focus {
   background-image: linear-gradient(to right, #48a0f2, #3377ed);
   color: white;
 }
