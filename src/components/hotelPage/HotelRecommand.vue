@@ -118,7 +118,29 @@ export default {
           id: 4,
           hotelsInfo: {
             cityName: "南京",
-            hotels: [],
+            hotels: [
+              {
+                id: 1,
+                hotelName: "南京夫子庙夜泊秦淮君亭酒店",
+                pic: "https://dimg04.c-ctrip.com/images/02073120008ipmrtk9378_R_300_225_R5_Q70_D.jpg",
+                rate: 4.9,
+                price: 1859,
+              },
+              {
+                id: 2,
+                hotelName: "夫子庙·金陵精品酒店",
+                pic: "https://dimg04.c-ctrip.com/images/20081f000001gqvzz3562_R_300_225_R5_Q70_D.jpg",
+                rate: 4.7,
+                price: 1118,
+              },
+              {
+                id: 3,
+                hotelName: "南京艺美风尚酒店",
+                pic: "https://dimg04.c-ctrip.com/images/0200312000a238e4l61B5_R_300_225_R5_Q70_D.jpg",
+                rate: 4.3,
+                price: 501,
+              },
+            ],
           },
         },
       ],
@@ -137,9 +159,10 @@ export default {
 </script>
 
 <style>
+/* 整体布局 */
 .hotel_recommand_layout {
   width: 740px;
-  margin-top: 30px;
+  margin: 30px 0;
 }
 .hotel_recommand_title,
 .bt_city_layout {

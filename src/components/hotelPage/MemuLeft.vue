@@ -36,14 +36,15 @@ export default {
 <style scoped>
 /* 左侧菜单栏整体布局样式 */
 .menu_left_layout {
-  width: 50px;
+  width: 70px;
   height: 100%;
   position: fixed;
   left: 0;
   top: 0;
-  border-right: 1px solid rgba(128, 128, 128, 0.509);
+  border-right: 1px solid rgba(128, 128, 128, 0.4);
   display: flex;
   flex-direction: column;
+  background-color: #fafafa;
 }
 .menu_left_layout:hover {
   width: 165px;
@@ -54,6 +55,7 @@ export default {
   width: 100%;
   height: 60px;
   cursor: pointer;
+  background-color: white;
 }
 .menu_icon .icon {
   width: 20px;
@@ -67,8 +69,16 @@ export default {
 
 /* 菜单项布局样式 */
 .menu_item {
+  width: 55px;
+  height: 90vh;
   display: flex;
   flex-direction: column;
+  border-right: 1px solid rgba(157, 156, 156, 0.35);
+  border-bottom: 1px solid rgba(157, 156, 156, 0.35);
+  background-color: white;
+}
+.menu_left_layout:hover .menu_item {
+  width: 150px;
 }
 
 .menu_item button {

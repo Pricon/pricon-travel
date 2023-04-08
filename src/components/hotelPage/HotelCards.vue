@@ -52,6 +52,7 @@ export default {
   cursor: pointer;
   transition: 0.1s linear;
 }
+
 .image {
   width: 100%;
   display: block;
@@ -66,10 +67,11 @@ export default {
   overflow: hidden;
 }
 .hotel_cards .el-card:hover {
-  box-shadow: 0 0 15px rgb(171, 171, 171);
+  /* box-shadow: 0 0 15px rgb(171, 171, 171); */
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .hotel_cards .el-card:hover .image {
-  width: 102%;
+  transform: scale(105%, 105%);
 }
 
 .hotel_details {

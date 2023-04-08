@@ -18,6 +18,7 @@ export default {
         { id: 1, picName: "adv001.png", title: "五一出游酒店" },
         { id: 2, picName: "adv002.png", title: "趣看花花世界" },
         { id: 3, picName: "adv003.jpeg", title: "世纪换新，春生绿洲" },
+        { id: 4, picName: "adv004.png", title: "奔跑吧孩子王" },
       ],
     };
   },
