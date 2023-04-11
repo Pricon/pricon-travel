@@ -2,18 +2,10 @@
 <template>
   <div class="login_header_layout">
     <div class="login_header_left_logo">
-      <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-tubiaozhizuomoban_shatan"></use>
-      </svg>
       <span>普利旅行</span>
     </div>
     <div class="login_header_right">
-      <a href="#">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-shouye"></use>
-        </svg>
-        首页
-      </a>
+      <button @click="toNextPage('/')">首页</button>
     </div>
   </div>
 </template>
@@ -21,6 +13,11 @@
 <script>
 export default {
   name: "LoginHeader",
+  methods: {
+    toNextPage(path) {
+      this.$router.push(path);
+    },
+  },
 };
 </script>
 
@@ -41,23 +38,37 @@ export default {
   color: #3a84ee;
   margin-left: 100px;
 }
+.login_header_left_logo::before {
+  font-family: "iconfont";
+  content: "\e605";
+}
 
 /* 右边首页布局 */
 .login_header_right {
   margin-right: 250px;
 }
-.login_header_right a {
+.login_header_right button {
   font-size: 15px;
-  text-decoration: none;
   color: black;
+  background: none;
+  border: none;
   margin-left: 100px;
+  cursor: pointer;
 }
-.login_header_right a:hover {
+.login_header_right button::before {
+  font-family: "iconfont";
+  content: "\e8b9";
+  color: #5d77a4;
+  font-size: 18px;
+  margin-right: 5px;
+}
+.login_header_right button:hover,
+.login_header_right button:hover::before {
   color: #3a84ee;
 }
-.login_header_right a .icon {
-  width: 20px;
-  height: 20px;
+.login_header_right button .icon {
+  width: 18px;
+  height: 18px;
   margin: 0;
   padding: 0;
 }

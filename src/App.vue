@@ -1,23 +1,12 @@
 <template>
   <div id="app">
-    <!-- <HomePage></HomePage> -->
-    <!-- <LoginPage></LoginPage> -->
-    <RegisterPage></RegisterPage>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-// import HomePage from "./pages/HomePage.vue";
-// import LoginPage from "./pages/LoginPage.vue";
-import RegisterPage from "./pages/RegisterPage.vue";
-
 export default {
   name: "App",
-  components: {
-    // HomePage,
-    // LoginPage,
-    RegisterPage,
-  },
 };
 </script>
 
@@ -54,5 +43,18 @@ body {
     url("//at.alicdn.com/wf/webfont/E7XH88YtQlo7/dngGNZo80UIh.woff")
       format("woff");
   font-display: swap;
+}
+@font-face {
+  font-family: "iconfont";
+  src: url("~@/assets/icons/iconfont.woff2?t=1681220897634") format("woff2"),
+    url("~@/assets/icons/iconfont.woff?t=1681220897634") format("woff"),
+    url("~@/assets/icons/iconfont.ttf?t=1681220897634") format("truetype");
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>

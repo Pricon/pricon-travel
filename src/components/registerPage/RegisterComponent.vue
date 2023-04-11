@@ -294,6 +294,7 @@ export default {
 <style scoped>
 .register_layout {
   margin-top: 20px;
+  height: 65vh;
 }
 .register_layout .register_steps .el-steps:first-child {
   margin-left: 130px;

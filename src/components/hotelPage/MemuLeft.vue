@@ -3,15 +3,11 @@
   <div class="menu_left_layout">
     <div class="menu_left_inner">
       <div class="menu_icon">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-caidan"></use>
-        </svg>
+        <span class="iconfont">&#xe67c;</span>
       </div>
       <div class="menu_item">
         <button v-for="m in menuItemList" :key="m.id">
-          <svg class="icon" aria-hidden="true">
-            <use :xlink:href="'#icon-' + m.icon"></use>
-          </svg>
+          <i class="iconfont">{{ m.icon }}</i>
           <span>{{ m.title }}</span>
         </button>
       </div>
@@ -25,10 +21,10 @@ export default {
   data() {
     return {
       menuItemList: [
-        { id: "001", icon: "jiudian", title: "酒店" },
-        { id: "002", icon: "jipiao", title: "机票" },
-        { id: "003", icon: "icon_huochepiao", title: "火车票" },
-        { id: "004", icon: "shuji", title: "攻略·景点" },
+        { id: "001", icon: "\ue73f", title: "酒店" },
+        { id: "002", icon: "\ue73e", title: "机票" },
+        { id: "003", icon: "\ue64e", title: "火车票" },
+        { id: "004", icon: "\ue607", title: "攻略·景点" },
       ],
     };
   },
@@ -62,17 +58,17 @@ export default {
 /* 菜单图标 */
 .menu_icon {
   width: 100%;
-  height: 60px;
+  height: 50px;
   cursor: pointer;
+  margin-top: 20px;
 }
-.menu_icon .icon {
-  width: 20px;
-  height: 20px;
-  margin: 20px 0 0 15px;
+.menu_icon .iconfont {
+  margin-left: 15px;
+  font-size: 20px;
 }
 
-.menu_left_layout:hover .menu_icon .icon {
-  margin: 20px 0 0 30px;
+.menu_left_layout:hover .menu_icon .iconfont {
+  margin-left: 30px;
 }
 
 /* 菜单项布局样式 */
@@ -100,9 +96,9 @@ export default {
   background: none;
   cursor: pointer;
 }
-.menu_item .icon {
-  width: 20px;
-  height: 20px;
+.menu_item .iconfont {
+  color: #3377ed;
+  font-size: 20px;
 }
 .menu_item button span {
   display: none;
@@ -118,6 +114,9 @@ export default {
 
 .menu_item button:focus {
   background-image: linear-gradient(to right, #48a0f2, #3377ed);
+  color: white;
+}
+.menu_item button:focus .iconfont {
   color: white;
 }
 </style>

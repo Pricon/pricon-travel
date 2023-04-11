@@ -3,18 +3,13 @@
     <!-- logo以及搜索框 -->
     <div class="logo_search_layout">
       <div class="logo">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-tubiaozhizuomoban_shatan"></use>
-        </svg>
         <span>普利旅行</span>
       </div>
       <!-- 使用element-ui中的input搜索框 -->
       <div>
         <el-input placeholder="搜索任何旅游相关" class="input-with-select">
           <el-button slot="append" class="search-button">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-sousuo1"></use>
-            </svg>
+            <i class="iconfont">&#xe632;</i>
           </el-button>
         </el-input>
       </div>
@@ -22,16 +17,12 @@
 
     <!-- 登陆、注册按钮 -->
     <div class="login_register_layout">
-      <button class="login">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-user"></use>
-        </svg>
+      <button class="login" @click="toNextPage('/login')">
+        <i class="iconfont">&#xe611;</i>
         <span>请登录</span>
       </button>
-      <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-anjianfengexian"></use>
-      </svg>
-      <button class="register">注册</button>
+      <span class="iconfont">&#xe680;</span>
+      <button class="register" @click="toNextPage('/register')">注册</button>
     </div>
   </div>
 </template>
@@ -39,6 +30,11 @@
 <script>
 export default {
   name: "HeaderComponent",
+  methods: {
+    toNextPage(path) {
+      this.$router.push(path);
+    },
+  },
 };
 </script>
 
@@ -63,6 +59,10 @@ export default {
   color: #3a84ee;
   margin-right: 50px;
 }
+.logo_search_layout .logo::before {
+  font-family: "iconfont";
+  content: "\e605";
+}
 .logo_search_layout .input-with-select {
   width: 300px;
 }
@@ -70,6 +70,7 @@ export default {
   background-color: #3a84ee;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  color: white;
 }
 
 /* 登陆、注册按钮相关布局 */
@@ -92,14 +93,14 @@ export default {
   margin-right: 5px;
 }
 
-.login .icon {
-  width: 23px;
-  height: 23px;
-  padding-right: 5px;
-  margin-top: 3px;
+.login .iconfont {
+  font-size: 20px;
+  margin-right: 5px;
+  color: #5d77a4;
 }
 
-.login:hover {
+.login:hover .iconfont,
+.login:hover span {
   color: #3a84ee;
 }
 

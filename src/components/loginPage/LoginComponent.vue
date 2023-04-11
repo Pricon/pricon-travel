@@ -37,11 +37,12 @@
       </el-form>
       <div class="login_agree_policy">
         <input type="radio" id="agree_radio" />
-        阅读并同意<a href="#">服务协议</a>和<a href="#">个人信息保护政策</a>
+        阅读并同意<a href="#">&nbsp;服务协议&nbsp;</a>和<a href="#"
+          >&nbsp;个人信息保护政策&nbsp;</a
+        >
       </div>
       <div class="login_forget_password_and_register">
-        <a href="#">忘记密码</a>
-        <a href="#">免费注册</a>
+        <button @click="toNextPage('/register')">免费注册</button>
       </div>
     </div>
   </div>
@@ -82,6 +83,9 @@ export default {
       localStorage.setItem("accouter", this.loginForm.accounter);
       localStorage.setItem("passwd", this.loginForm.password);
     },
+    toNextPage(path) {
+      this.$router.push(path);
+    },
   },
 };
 </script>
@@ -120,7 +124,7 @@ export default {
 .login_card .login_inputs .el-input {
   font-size: 15px;
 }
-.login_card button {
+.login_card .el-button {
   width: 100%;
   height: 40px;
   color: white;
@@ -136,7 +140,6 @@ export default {
   width: 100%;
   font-size: 12px;
   color: grey;
-  margin-top: 10px;
 }
 .login_card .login_agree_policy #agree_radio {
   vertical-align: middle;
@@ -149,9 +152,15 @@ export default {
 }
 .login_card .login_forget_password_and_register {
   width: 100%;
-  font-size: 10px;
   margin-top: 20px;
   display: inline-flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+}
+.login_card .login_forget_password_and_register button {
+  color: #3377ed;
+  border: none;
+  background: none;
+  font-size: 10px;
+  cursor: pointer;
 }
 </style>

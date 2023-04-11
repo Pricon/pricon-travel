@@ -102,9 +102,6 @@
         </div>
       </div>
       <button>
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-sousuo1"></use>
-        </svg>
         <span>搜索</span>
       </button>
     </div>
@@ -241,5 +238,9 @@ export default {
   color: white;
   font-size: 20px;
   cursor: pointer;
+}
+.details_layout button::before {
+  font-family: "iconfont";
+  content: "\e632";
 }
 </style>
