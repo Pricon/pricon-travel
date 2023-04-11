@@ -1,18 +1,20 @@
 // 左侧导航栏组件
 <template>
   <div class="menu_left_layout">
-    <div class="menu_icon">
-      <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-caidan"></use>
-      </svg>
-    </div>
-    <div class="menu_item">
-      <button v-for="m in menuItemList" :key="m.id">
+    <div class="menu_left_inner">
+      <div class="menu_icon">
         <svg class="icon" aria-hidden="true">
-          <use :xlink:href="'#icon-' + m.icon"></use>
+          <use xlink:href="#icon-caidan"></use>
         </svg>
-        <span>{{ m.title }}</span>
-      </button>
+      </div>
+      <div class="menu_item">
+        <button v-for="m in menuItemList" :key="m.id">
+          <svg class="icon" aria-hidden="true">
+            <use :xlink:href="'#icon-' + m.icon"></use>
+          </svg>
+          <span>{{ m.title }}</span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -36,18 +38,25 @@ export default {
 <style scoped>
 /* 左侧菜单栏整体布局样式 */
 .menu_left_layout {
-  width: 70px;
+  width: 150px;
   height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
+  position: relative;
+  z-index: 10000;
+  cursor: pointer;
+  transition: 0.1s linear;
+}
+
+.menu_left_inner {
+  width: 50px;
+  height: 100vh;
   border-right: 1px solid rgba(128, 128, 128, 0.4);
   display: flex;
   flex-direction: column;
-  background-color: #fafafa;
+  position: fixed;
+  background-color: white;
 }
-.menu_left_layout:hover {
-  width: 165px;
+.menu_left_layout:hover .menu_left_inner {
+  width: 150px;
 }
 
 /* 菜单图标 */
@@ -55,7 +64,6 @@ export default {
   width: 100%;
   height: 60px;
   cursor: pointer;
-  background-color: white;
 }
 .menu_icon .icon {
   width: 20px;
@@ -69,13 +77,10 @@ export default {
 
 /* 菜单项布局样式 */
 .menu_item {
-  width: 55px;
-  height: 90vh;
+  width: 50px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid rgba(157, 156, 156, 0.35);
-  border-bottom: 1px solid rgba(157, 156, 156, 0.35);
-  background-color: white;
 }
 .menu_left_layout:hover .menu_item {
   width: 150px;

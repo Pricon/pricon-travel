@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  name: "HeaderContent",
+  name: "HeaderComponent",
 };
 </script>
 
@@ -49,15 +49,6 @@ export default {
   height: 72px;
   display: flex;
   justify-content: space-between;
-}
-@font-face {
-  font-family: "站酷高端黑 Regular";
-  font-weight: 400;
-  src: url("//at.alicdn.com/wf/webfont/E7XH88YtQlo7/xfIQzVRYF3A9.woff2")
-      format("woff2"),
-    url("//at.alicdn.com/wf/webfont/E7XH88YtQlo7/umIRyPan1MHq.woff")
-      format("woff");
-  font-display: swap;
 }
 /* logo、搜索栏相关布局 */
 .logo_search_layout {
@@ -86,6 +77,7 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-right: 5vw;
 }
 .login_register_layout .login {
   width: 90px;

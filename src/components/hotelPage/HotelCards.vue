@@ -40,7 +40,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .hotel_cards {
   display: flex;
   justify-content: space-evenly;

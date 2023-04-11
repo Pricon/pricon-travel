@@ -127,12 +127,12 @@ export default {
 <style>
 /* 口碑排行榜整体布局 */
 .hotel_rank_layout {
-  /* position: sticky;
-  right: 20px;
-  top: 0; */
+  position: sticky;
+  right: 0;
+  top: 0;
   width: 425px;
   height: 680px;
-  margin: 0 15px;
+  margin-right: 5vw;
 }
 
 /* 走马灯内部布局 */

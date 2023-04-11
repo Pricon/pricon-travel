@@ -1,31 +1,41 @@
-// 酒店页面的主页面
 <template>
-  <div class="hotel_content_layout">
-    <HotelReservation></HotelReservation>
-    <ADVContent></ADVContent>
-    <HotelRecommand></HotelRecommand>
+  <div class="container">
+    <HeaderComponent></HeaderComponent>
+    <div class="mainContent">
+      <HotelMainComponent></HotelMainComponent>
+      <HotelRankAside></HotelRankAside>
+    </div>
+    <FooterComponent></FooterComponent>
   </div>
 </template>
 
 <script>
-import HotelReservation from "./HotelReservation";
-import ADVContent from "./ADVContent";
-import HotelRecommand from "./HotelRecommand";
+import HeaderComponent from "./HeaderComponent.vue";
+import HotelMainComponent from "./HotelMainComponent.vue";
+import HotelRankAside from "./HotelRankAside.vue";
+import FooterComponent from "./FooterComponent.vue";
 
 export default {
   name: "HotelContent",
   components: {
-    HotelReservation,
-    ADVContent,
-    HotelRecommand,
+    HeaderComponent,
+    HotelMainComponent,
+    HotelRankAside,
+    FooterComponent,
   },
 };
 </script>
 
-<style>
-.hotel_content_layout {
+<style scoped>
+.container {
+  position: relative;
   display: flex;
-  height: 100%;
   flex-direction: column;
+  flex: 1;
+  margin: 0 15px;
+}
+.mainContent {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

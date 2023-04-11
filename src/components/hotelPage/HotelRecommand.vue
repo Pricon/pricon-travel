@@ -158,7 +158,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* 整体布局 */
 .hotel_recommand_layout {
   width: 740px;

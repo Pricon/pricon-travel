@@ -31,6 +31,10 @@ export default {
   box-sizing: border-box;
   margin-top: 30px;
 }
+
+.advcontent_layout .el-carousel {
+  border-radius: 10px;
+}
 .advcontent_layout img {
   height: 100px;
   width: 740px;
