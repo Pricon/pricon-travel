@@ -36,7 +36,7 @@
         </el-form-item>
       </el-form>
       <div class="login_agree_policy">
-        <input type="radio" id="agree_radio" />
+        <input type="radio" id="agree_radio" checked />
         阅读并同意<a href="#">&nbsp;服务协议&nbsp;</a>和<a href="#"
           >&nbsp;个人信息保护政策&nbsp;</a
         >

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import MemuLeft from "../components/hotelPage/MemuLeft";
-import HotelContent from "../components/hotelPage/HotelContent";
+import MemuLeft from "../components/homePage/MemuLeft";
+import HotelContent from "../components/homePage/HotelContent";
 
 export default {
   name: "MainPage",

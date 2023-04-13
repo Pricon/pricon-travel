@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3998540 */
-  src: url('iconfont.woff2?t=1681220897634') format('woff2'),
-       url('iconfont.woff?t=1681220897634') format('woff'),
-       url('iconfont.ttf?t=1681220897634') format('truetype');
+  src: url('iconfont.woff2?t=1681355212055') format('woff2'),
+       url('iconfont.woff?t=1681355212055') format('woff'),
+       url('iconfont.ttf?t=1681355212055') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,38 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-icon-test:before {
+  content: "\e663";
+}
+
+.icon-icon-test1:before {
+  content: "\e668";
+}
+
+.icon-zhengquewancheng:before {
+  content: "\e8e5";
+}
+
+.icon-xialajiantou:before {
+  content: "\e60c";
+}
+
+.icon-shangjiantou:before {
+  content: "\e606";
+}
+
+.icon-icon_tianjia:before {
+  content: "\eb89";
+}
+
+.icon-jian:before {
+  content: "\e600";
+}
+
+.icon-jia:before {
+  content: "\e601";
 }
 
 .icon-shouye:before {
@@ -37,14 +69,6 @@
   content: "\e67c";
 }
 
-.icon-jipiao-white:before {
-  content: "\e741";
-}
-
-.icon-jiudian-white:before {
-  content: "\e742";
-}
-
 .icon-shuji:before {
   content: "\e607";
 }
@@ -59,13 +83,5 @@
 
 .icon-icon_huochepiao:before {
   content: "\e64e";
-}
-
-.icon-icon_huochepiao-white:before {
-  content: "\e743";
-}
-
-.icon-shuji-white:before {
-  content: "\e740";
 }
 

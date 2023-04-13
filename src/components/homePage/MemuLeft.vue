@@ -6,7 +6,11 @@
         <span class="iconfont">&#xe67c;</span>
       </div>
       <div class="menu_item">
-        <button v-for="m in menuItemList" :key="m.id">
+        <button
+          v-for="m in menuItemList"
+          :key="m.id"
+          @click="toNextPage(m.path)"
+        >
           <i class="iconfont">{{ m.icon }}</i>
           <span>{{ m.title }}</span>
         </button>
@@ -21,12 +25,17 @@ export default {
   data() {
     return {
       menuItemList: [
-        { id: "001", icon: "\ue73f", title: "酒店" },
-        { id: "002", icon: "\ue73e", title: "机票" },
-        { id: "003", icon: "\ue64e", title: "火车票" },
-        { id: "004", icon: "\ue607", title: "攻略·景点" },
+        { id: "001", icon: "\ue73f", title: "酒店", path: "/jiudian" },
+        { id: "002", icon: "\ue73e", title: "机票", path: "/jipiao" },
+        { id: "003", icon: "\ue64e", title: "火车票", path: "/huochepiao" },
+        { id: "004", icon: "\ue607", title: "攻略·景点", path: "/gonglue" },
       ],
     };
+  },
+  methods: {
+    toNextPage(path) {
+      this.$router.push(path);
+    },
   },
 };
 </script>

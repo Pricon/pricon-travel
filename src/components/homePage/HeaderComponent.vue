@@ -16,7 +16,7 @@
     </div>
 
     <!-- 登陆、注册按钮 -->
-    <div class="login_register_layout">
+    <div class="login_register_layout" v-show="!isLogin">
       <button class="login" @click="toNextPage('/login')">
         <i class="iconfont">&#xe611;</i>
         <span>请登录</span>
@@ -24,12 +24,27 @@
       <span class="iconfont">&#xe680;</span>
       <button class="register" @click="toNextPage('/register')">注册</button>
     </div>
+    <!-- 用户中心 -->
+    <div class="user_center_layout" v-show="isLogin">
+      <button class="user" @click="toNextPage('/usercenter')">
+        <!-- <i class="iconfont">&#xe668;</i> -->
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-icon-test1"></use>
+        </svg>
+        <span>Logviv</span>
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   name: "HeaderComponent",
+  data() {
+    return {
+      isLogin: false,
+    };
+  },
   methods: {
     toNextPage(path) {
       this.$router.push(path);
@@ -74,13 +89,15 @@ export default {
 }
 
 /* 登陆、注册按钮相关布局 */
-.login_register_layout {
+.login_register_layout,
+.user_center_layout {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-right: 5vw;
+  margin-right: 4vw;
 }
-.login_register_layout .login {
+.login_register_layout .login,
+.user_center_layout .user {
   width: 90px;
   height: 30px;
   background-color: #f3f8fd;
@@ -100,7 +117,8 @@ export default {
 }
 
 .login:hover .iconfont,
-.login:hover span {
+.login:hover span,
+.user:hover span {
   color: #3a84ee;
 }
 
@@ -114,5 +132,20 @@ export default {
 }
 .login_register_layout .register:hover {
   color: #3a84ee;
+}
+
+.user_center_layout .user {
+  width: 100px;
+}
+.user .icon {
+  font-size: 20px;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+.user span {
+  max-width: 70px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>

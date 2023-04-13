@@ -132,7 +132,7 @@ export default {
   top: 0;
   width: 425px;
   height: 680px;
-  margin-right: 5vw;
+  margin-right: 4vw;
 }
 
 /* 走马灯内部布局 */

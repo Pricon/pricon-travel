@@ -6,6 +6,62 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1903538",
+      "name": "头像 女孩",
+      "font_class": "icon-test",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "1904339",
+      "name": "头像 男孩",
+      "font_class": "icon-test1",
+      "unicode": "e668",
+      "unicode_decimal": 58984
+    },
+    {
+      "icon_id": "1727517",
+      "name": "303正确、完成",
+      "font_class": "zhengquewancheng",
+      "unicode": "e8e5",
+      "unicode_decimal": 59621
+    },
+    {
+      "icon_id": "12705539",
+      "name": "下拉箭头",
+      "font_class": "xialajiantou",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "13474449",
+      "name": "上箭头",
+      "font_class": "shangjiantou",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "4347520",
+      "name": "icon_添加",
+      "font_class": "icon_tianjia",
+      "unicode": "eb89",
+      "unicode_decimal": 60297
+    },
+    {
+      "icon_id": "1268",
+      "name": "减",
+      "font_class": "jian",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1269",
+      "name": "加",
+      "font_class": "jia",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
       "icon_id": "1727423",
       "name": "204首页",
       "font_class": "shouye",
@@ -48,20 +104,6 @@
       "unicode_decimal": 59004
     },
     {
-      "icon_id": "34932444",
-      "name": "机票-copy",
-      "font_class": "jipiao-white",
-      "unicode": "e741",
-      "unicode_decimal": 59201
-    },
-    {
-      "icon_id": "34932448",
-      "name": "酒店-copy",
-      "font_class": "jiudian-white",
-      "unicode": "e742",
-      "unicode_decimal": 59202
-    },
-    {
       "icon_id": "3858838",
       "name": "书籍",
       "font_class": "shuji",
@@ -88,20 +130,6 @@
       "font_class": "icon_huochepiao",
       "unicode": "e64e",
       "unicode_decimal": 58958
-    },
-    {
-      "icon_id": "34932462",
-      "name": "icon_火车票-copy",
-      "font_class": "icon_huochepiao-white",
-      "unicode": "e743",
-      "unicode_decimal": 59203
-    },
-    {
-      "icon_id": "34932398",
-      "name": "书籍-copy",
-      "font_class": "shuji-white",
-      "unicode": "e740",
-      "unicode_decimal": 59200
     }
   ]
 }

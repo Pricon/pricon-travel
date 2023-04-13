@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import HotelListPage from "../pages/HotelListPage";
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,16 @@ const routes = [
     path: '/register',
     name: 'register',
     component: RegisterPage
+  },
+  {
+    path: '/jiudian',
+    name: 'jiudian',
+    component: HomePage
+  },
+  {
+    path: '/hotels',
+    name: 'hotels',
+    component: HotelListPage
   }
 ]
 
