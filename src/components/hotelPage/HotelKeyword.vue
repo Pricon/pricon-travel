@@ -50,11 +50,40 @@
     </dl>
     <dl class="price_filter">
       <dt>星级价格</dt>
-      <dd></dd>
+      <dd>
+        <el-tag>五星(钻)</el-tag>
+        <el-tag>四星(钻)</el-tag>
+        <el-tag>三星(钻)</el-tag>
+        <el-tag>二星(钻)及以下</el-tag>
+      </dd>
     </dl>
-    <dl class="advaned_filter">
+    <dl class="advanced_filter">
       <dt>高级筛选</dt>
-      <dd></dd>
+      <dd>
+        <div>
+          <el-tabs v-model="advancedName">
+            <el-tab-pane label="评分" name="first">
+              <el-tag>4.5分以上</el-tag>
+              <el-tag>4分以上</el-tag>
+              <el-tag>3.5分以上</el-tag>
+            </el-tab-pane>
+            <el-tab-pane label="房型" name="second">
+              <el-tag>双床房</el-tag>
+              <el-tag>大床房</el-tag>
+            </el-tab-pane>
+            <el-tab-pane label="住宿类型" name="third">
+              <el-tag>酒店</el-tag>
+              <el-tag>民宿</el-tag>
+              <el-tag>青年旅舍</el-tag>
+            </el-tab-pane>
+            <el-tab-pane label="早餐" name="fourth">
+              <el-tag>不含早餐</el-tag>
+              <el-tag>单份早餐</el-tag>
+              <el-tag>双份早餐</el-tag>
+            </el-tab-pane>
+          </el-tabs>
+        </div>
+      </dd>
     </dl>
   </div>
 </template>
@@ -65,6 +94,7 @@ export default {
   data() {
     return {
       activeName: "first",
+      advancedName: "first",
       city: {
         上海: {
           hot: ["迪士尼度假区", "外滩", "浦东国际机场", "虹桥火车站", "陆家嘴"],
@@ -122,15 +152,23 @@ export default {
   background-color: #f0f2f5;
 }
 
+.keyword_container dl:nth-child(1),
+.keyword_container dl:nth-child(2) {
+  border-bottom: 1px solid #d9ecff;
+}
 .keyword_container dt {
   background-color: #f0f2f5;
   padding: 15px 20px;
   font-size: 15px;
   flex-shrink: 0;
 }
+.keyword_container dd {
+  margin-bottom: 10px;
+  margin-inline-start: 20px;
+}
 .position_filter,
 .price_filter,
-.advaned_filter {
+.advanced_filter {
   display: flex;
   background-color: white;
   margin: 0;
@@ -142,10 +180,14 @@ export default {
 }
 
 .position_filter .el-tag,
-.position_filter .business_aera_tag {
+.position_filter .business_aera_tag,
+.advanced_filter .el-tag {
   margin: 0 5px;
+  cursor: pointer;
 }
-
+.el-tag:hover {
+  color: #3b71dd;
+}
 .position_filter .business_aera_tag {
   display: inline-block;
   width: 100px;
@@ -167,5 +209,26 @@ export default {
 }
 .business_aera_tag .business_aera_tag_popularity span {
   color: orange;
+}
+
+.price_filter .el-tag {
+  margin: 10px 5px 0 5px;
+  cursor: pointer;
+}
+
+.el-tabs {
+  margin-top: 5px;
+}
+/deep/.advanced_filter .el-tabs .el-tabs__item::after {
+  content: "\e60c";
+  font-family: "iconfont";
+  margin-left: 3px;
+}
+/deep/.advanced_filter .el-tabs__nav-wrap::after,
+/deep/.advanced_filter .el-tabs__active-bar {
+  display: none;
+}
+/deep/.advanced_filter .el-tabs__header {
+  margin-bottom: 0;
 }
 </style>
