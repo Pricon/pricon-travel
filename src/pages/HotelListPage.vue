@@ -4,6 +4,7 @@
     <HeaderAndSearch></HeaderAndSearch>
     <div class="main_content">
       <HotelKeyword></HotelKeyword>
+      <HotelList></HotelList>
     </div>
   </div>
 </template>
@@ -11,9 +12,11 @@
 <script>
 import HeaderAndSearch from "../components/hotelPage/HeaderAndSearch.vue";
 import HotelKeyword from "../components/hotelPage/HotelKeyword.vue";
+import HotelList from "../components/hotelPage/HotelList.vue";
+
 export default {
   name: "HotelListPage",
-  components: { HeaderAndSearch, HotelKeyword },
+  components: { HeaderAndSearch, HotelKeyword, HotelList },
 };
 </script>
 

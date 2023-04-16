@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1440917",
+      "name": "推荐",
+      "font_class": "tuijian",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "200856",
+      "name": "3.1关闭",
+      "font_class": "31guanbi",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
       "icon_id": "1903538",
       "name": "头像 女孩",
       "font_class": "icon-test",
