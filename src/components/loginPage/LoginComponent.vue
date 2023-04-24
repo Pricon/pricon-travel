@@ -79,31 +79,20 @@ export default {
   },
   methods: {
     async submitForm(loginForm) {
-      let that = this;
-      // 发送post请求，将用户注册信息发送到服务端
-      await this.$axios({
-        method: "POST",
-        url: "http://localhost:5050/login",
-        data: {
-          accounter: loginForm.accounter,
-          password: loginForm.password,
-        },
-      })
-        .then((res) => {
-          //接口成功返回结果执行
-          if (res.status == "200" && res.data.message == "登录成功") {
-            // 登录成功，将用户名密码保存到本地存储
-            localStorage.setItem("accouter", that.loginForm.accounter);
-            localStorage.setItem("passwd", that.loginForm.password);
-
-            // 跳转到首页
-            this.toNextPage("/");
-          }
-        })
-        .catch((err) => {
-          //请求失败或者接口返回失败或者.then()中的代码发生错误时执行
-          console.log(err);
+      let res = await this.$post("/login", {
+        accounter: loginForm.accounter,
+        password: loginForm.password,
+      });
+      if (res.code == 0 && res.msg == "登录成功") {
+        localStorage.setItem("token", res.token);
+        this.toNextPage("/");
+      } else {
+        this.$message({
+          showClose: true,
+          message: "用户名或者密码错误，请重新登录",
+          type: "error",
         });
+      }
     },
     toNextPage(path) {
       this.$router.push(path);

@@ -29,6 +29,7 @@
             v-model="registerForm.telNumber"
             placeholder="输入手机号"
             autocomplete="off"
+            maxlength="11"
           ></el-input>
         </el-form-item>
         <!-- 验证码 -->
@@ -73,6 +74,7 @@
             v-model="registerForm.accounter"
             autocomplete="off"
             placeholder="字母开头，最少5位，最多15位"
+            maxlength="15"
           ></el-input>
         </el-form-item>
         <!-- 邮箱 -->
@@ -279,44 +281,29 @@ export default {
             type: "error",
           });
         } else {
-          let vc = this;
-          vc.submitForm(registerForm, function (res) {
-            if (res.status == "200" && res.data.message == "注册成功") {
-              vc.$refs.setPasswd.style.display = "none";
-              vc.$refs.registerComplete.style.display = "block";
-              vc.step++;
-            } else {
-              vc.$message({
-                showClose: true,
-                message: "注册失败，请重新注册",
-                type: "error",
-              });
-            }
+          // 发送请求，将用户注册信息发送到服务端
+          let res = this.register({
+            accounter: registerForm.accounter,
+            password: registerForm.password,
+            telephone: registerForm.telNumber,
+            email: registerForm.email,
           });
+          if (res.code == 0 && res.msg == "注册成功") {
+            this.$refs.setPasswd.style.display = "none";
+            this.$refs.registerComplete.style.display = "block";
+            this.step++;
+          } else {
+            this.$message({
+              showClose: true,
+              message: "注册失败，请重新注册",
+              type: "error",
+            });
+          }
         }
       }
     },
-    async submitForm(registerForm, callback) {
-      // 发送post请求，将用户注册信息发送到服务端
-      await this.$axios({
-        method: "POST",
-        url: "http://localhost:5050/register",
-        data: {
-          accounter: registerForm.accounter,
-          password: registerForm.password,
-          telephone: registerForm.telNumber,
-          email: registerForm.email,
-        },
-      })
-        .then((res) => {
-          //接口成功返回结果执行
-          callback(res);
-        })
-        .catch(function (err) {
-          //请求失败或者接口返回失败或者.then()中的代码发生错误时执行
-          console.log(err);
-          callback(err);
-        });
+    async register(body) {
+      return await this.$post("/register", body);
     },
     toNextPage(path) {
       this.$router.push(path);

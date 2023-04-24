@@ -1,5 +1,7 @@
 const Koa = require("koa")
 const router = require("./router/index")
+const koaJwt = require("koa-jwt");
+const secret = require("./privateConf")
 
 const app = new Koa()
 const port = 5050;
@@ -18,6 +20,11 @@ app.use(async (ctx, next) => {
     await next();
   }
 });
+
+// 路由权限控制，除了`path`里匹配的路径，都需要验证 token
+app.use(koaJwt({ secret }).unless({
+  path: [/^\/login/, /^\/register/]
+}));
 
 app.use(router.routes(), router.allowedMethods())
 app.listen(port)

@@ -34,23 +34,30 @@ login.post("/", async (ctx) => {
     if (passArray.length > 0) {
       ctx.status = 200;
       ctx.body = {
-        message: "登录成功",
-        // 生成 token 返回给客户端
-        token: jsonwebtoken.sign(
-          {
-            data: {
-              accounter: accounter,
-              password: password
+        data: {
+          // 生成 token 返回给客户端
+          token: jsonwebtoken.sign(
+            {
+              data: {
+                accounter: accounter,
+                password: password
+              },
+              // 设置 token 过期时间
+              exp: Math.floor(Date.now() / 1000) + 60 * 60, // 60 seconds * 60 minutes = 1 hour
             },
-            // 设置 token 过期时间
-            exp: Math.floor(Date.now() / 1000) + 60 * 60, // 60 seconds * 60 minutes = 1 hour
-          },
-          secret
-        ),
+            secret
+          ),
+        },
+        code: 0,
+        msg: "登录成功"
       };
     } else {
       ctx.status = 401;
-      ctx.body = "密码错误";
+      ctx.body = {
+        data: null,
+        code: 1,
+        msg: "密码错误"
+      };
 
     }
 

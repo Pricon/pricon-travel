@@ -51,17 +51,22 @@ register.post("/", async (ctx) => {
         resolve(result);
       })
     })
-
-    console.log(insertResult);
     if (insertResult) {
       ctx.status = 200;
       ctx.body = {
-        message: "注册成功",
-        token: myToken
+        data: {
+          token: myToken,
+        },
+        code: 0,
+        msg: "注册成功"
       };
     } else {
       ctx.status = 401;
-      ctx.body = "注册失败";
+      ctx.body = {
+        data: null,
+        code: 1,
+        msg: "注册失败"
+      };
     }
 
   }
