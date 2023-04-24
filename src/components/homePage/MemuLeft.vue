@@ -26,9 +26,9 @@ export default {
     return {
       menuItemList: [
         { id: "001", icon: "\ue73f", title: "酒店", path: "/jiudian" },
-        { id: "002", icon: "\ue73e", title: "机票", path: "/jipiao" },
-        { id: "003", icon: "\ue64e", title: "火车票", path: "/huochepiao" },
-        { id: "004", icon: "\ue607", title: "攻略·景点", path: "/gonglue" },
+        { id: "002", icon: "\ue73e", title: "机票", path: "/" },
+        { id: "003", icon: "\ue64e", title: "火车票", path: "/" },
+        { id: "004", icon: "\ue607", title: "攻略·景点", path: "/" },
       ],
     };
   },

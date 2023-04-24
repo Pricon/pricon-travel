@@ -4,12 +4,13 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import HotelListPage from "../pages/HotelListPage";
+import HotelDetailsPage from "../pages/HotelDetailsPage.vue";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/hotels',
+    path: '/',
     name: 'home',
     component: HomePage
   },
@@ -26,13 +27,18 @@ const routes = [
   {
     path: '/jiudian',
     name: 'jiudian',
-    component: HomePage
+    component: HomePage,
   },
   {
-    path: '/',
+    path: '/hotels/list',
     name: 'hotels',
     component: HotelListPage
-  }
+  },
+  {
+    path: '/hotels/details',
+    name: 'details',
+    component: HotelDetailsPage
+  },
 ]
 
 const router = new VueRouter({

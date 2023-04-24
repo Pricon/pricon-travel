@@ -107,7 +107,7 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="nextStep()"
+          <el-button type="primary" @click="nextStep(registerForm)"
             >完&nbsp;&nbsp;&nbsp;成</el-button
           >
         </el-form-item>
@@ -116,7 +116,9 @@
     <div class="register_completed" ref="registerComplete">
       <el-result icon="success" title="注册成功" subTitle="请根据提示进行操作">
         <template slot="extra">
-          <div><a href="#">点此处</a>返回登录页面</div>
+          <div>
+            <a href="#" @click="toNextPage('/login')">点此处</a>返回登录页面
+          </div>
         </template>
       </el-result>
     </div>
@@ -157,7 +159,7 @@ export default {
       } else {
         const regex = /[A-z]+[\w]{4,14}/g;
         if (!regex.test(value) || value.length < 5 || value.length > 15) {
-          callback(new Error("用户名格式错误，请重新输入"));
+          callback(new Error("字母开头，最少5位，最多15位"));
         } else {
           callback();
         }
@@ -190,7 +192,7 @@ export default {
             /[\w]{8,}/.test(value)
           )
         ) {
-          callback(new Error("密码格式错误，请重新输入"));
+          callback(new Error("必须包含大小写字母，8位以上"));
         } else if (this.registerForm.checkpass !== "") {
           this.$refs.setPass.validateField("checkpass");
         } else {
@@ -209,7 +211,7 @@ export default {
             /[\w]{8,}/.test(value)
           )
         ) {
-          callback(new Error("密码格式错误，请重新输入"));
+          callback(new Error("必须包含大小写字母，8位以上"));
         } else if (value !== this.registerForm.password) {
           callback(new Error("两次输入密码不一致!"));
         } else {
@@ -250,7 +252,7 @@ export default {
         center: true,
       });
     },
-    nextStep() {
+    nextStep(registerForm) {
       // 手机验证->设置密码
       if (this.step == 1) {
         // 检查验证码
@@ -277,15 +279,47 @@ export default {
             type: "error",
           });
         } else {
-          this.$refs.setPasswd.style.display = "none";
-          this.$refs.registerComplete.style.display = "block";
-          this.submitForm();
-          this.step++;
+          let vc = this;
+          vc.submitForm(registerForm, function (res) {
+            if (res.status == "200" && res.data.message == "注册成功") {
+              vc.$refs.setPasswd.style.display = "none";
+              vc.$refs.registerComplete.style.display = "block";
+              vc.step++;
+            } else {
+              vc.$message({
+                showClose: true,
+                message: "注册失败，请重新注册",
+                type: "error",
+              });
+            }
+          });
         }
       }
     },
-    submitForm() {
-      console.log("注册成功");
+    async submitForm(registerForm, callback) {
+      // 发送post请求，将用户注册信息发送到服务端
+      await this.$axios({
+        method: "POST",
+        url: "http://localhost:5050/register",
+        data: {
+          accounter: registerForm.accounter,
+          password: registerForm.password,
+          telephone: registerForm.telNumber,
+          email: registerForm.email,
+        },
+      })
+        .then((res) => {
+          //接口成功返回结果执行
+          callback(res);
+        })
+        .catch(function (err) {
+          //请求失败或者接口返回失败或者.then()中的代码发生错误时执行
+          console.log(err);
+          callback(err);
+        });
+    },
+    toNextPage(path) {
+      this.$router.push(path);
     },
   },
 };

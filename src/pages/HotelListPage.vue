@@ -20,7 +20,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .main_content {
   background-color: #f5f7fa;
   padding: 15px 100px;

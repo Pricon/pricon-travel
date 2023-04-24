@@ -13,7 +13,7 @@
         <el-form-item prop="accounter">
           <el-input
             type="text"
-            placeholder="用户名/邮箱"
+            placeholder="用户名"
             v-model="loginForm.accounter"
             clearable
             autocomplete="off"
@@ -30,7 +30,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm()"
+          <el-button type="primary" @click="submitForm(loginForm)"
             >登&nbsp;&nbsp;&nbsp;录</el-button
           >
         </el-form-item>
@@ -78,10 +78,32 @@ export default {
     };
   },
   methods: {
-    submitForm() {
-      // 登录成功，将用户名密码保存到本地存储
-      localStorage.setItem("accouter", this.loginForm.accounter);
-      localStorage.setItem("passwd", this.loginForm.password);
+    async submitForm(loginForm) {
+      let that = this;
+      // 发送post请求，将用户注册信息发送到服务端
+      await this.$axios({
+        method: "POST",
+        url: "http://localhost:5050/login",
+        data: {
+          accounter: loginForm.accounter,
+          password: loginForm.password,
+        },
+      })
+        .then((res) => {
+          //接口成功返回结果执行
+          if (res.status == "200" && res.data.message == "登录成功") {
+            // 登录成功，将用户名密码保存到本地存储
+            localStorage.setItem("accouter", that.loginForm.accounter);
+            localStorage.setItem("passwd", that.loginForm.password);
+
+            // 跳转到首页
+            this.toNextPage("/");
+          }
+        })
+        .catch((err) => {
+          //请求失败或者接口返回失败或者.then()中的代码发生错误时执行
+          console.log(err);
+        });
     },
     toNextPage(path) {
       this.$router.push(path);
