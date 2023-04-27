@@ -1,18 +1,35 @@
 <template>
   <div class="hotels_layout">
-    <HeaderComponent></HeaderComponent>
+    <HeaderComponent :isLogin="isLogin"></HeaderComponent>
     <div class="hotel_search_layout">
       <div class="hotel_search">
         <!-- 选择目的地、酒店 -->
         <div class="destination">
-          <div class="label_style">目的地/酒店名称</div>
-          <el-input
+          <div class="label_style">目的地</div>
+          <!-- <el-input
             v-model="destination"
             placeholder="输入城市或者酒店名称"
             clearable
             size="small"
           >
-          </el-input>
+          </el-input> -->
+          <el-select
+            v-model="destination"
+            placeholder="请选择城市"
+            size="small"
+          >
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.label"
+            >
+              <span style="float: left">{{ item.label }}</span>
+              <span style="float: right; color: #8492a6; font-size: 13px">{{
+                item.value
+              }}</span>
+            </el-option>
+          </el-select>
         </div>
         <el-divider direction="vertical"></el-divider>
         <div class="select_date">
@@ -143,12 +160,14 @@
 import HeaderComponent from "../homePage/HeaderComponent.vue";
 export default {
   name: "HeaderAndSearch",
+  props: ["isLogin", "searchInfo", "changeCity"],
   components: { HeaderComponent },
   data() {
     return {
       destination: "",
       keywords: "",
-      start_end_date: "",
+      start_end_date: [],
+      days: 0,
       pickerOptions: {
         // 默认小于当前时间的日期不可选择
         disabledDate(time) {
@@ -161,14 +180,25 @@ export default {
         childNumber: 0,
         isShowDropdown: false,
       },
+      options: [
+        {
+          value: "Beijing",
+          label: "北京",
+        },
+        {
+          value: "Shanghai",
+          label: "上海",
+        },
+        {
+          value: "Nanjing",
+          label: "南京",
+        },
+        {
+          value: "Hangzhou",
+          label: "杭州",
+        },
+      ],
     };
-  },
-  computed: {
-    days() {
-      return (
-        (this.start_end_date[1] - this.start_end_date[0]) / (3600 * 1000 * 24)
-      );
-    },
   },
   methods: {
     getNowTime() {
@@ -249,7 +279,29 @@ export default {
     },
   },
   mounted() {
-    this.start_end_date = this.getNowTime();
+    this.destination = this.searchInfo.destination;
+    this.start_end_date[0] = this.searchInfo.startTime;
+    this.start_end_date[1] = this.searchInfo.endTime;
+    this.days =
+      (this.start_end_date[1] - this.start_end_date[0]) / (3600 * 1000 * 24);
+    this.rooms.roomNumber = this.searchInfo.roomNumber;
+    this.rooms.adultNumber = this.searchInfo.adultNumber;
+    this.rooms.childNumber = this.searchInfo.childNumber;
+    this.keywords = this.searchInfo.keywords;
+    if (this.start_end_date.length == 0) {
+      this.start_end_date = this.getNowTime();
+    }
+  },
+  watch: {
+    destination(newVal, oldVal) {
+      if (oldVal.length != 0) {
+        this.$emit("changeCity", newVal);
+      }
+    },
+    start_end_date() {
+      this.days =
+        (this.start_end_date[1] - this.start_end_date[0]) / (3600 * 1000 * 24);
+    },
   },
 };
 </script>

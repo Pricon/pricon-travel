@@ -31,7 +31,7 @@
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-icon-test1"></use>
         </svg>
-        <span>Logviv</span>
+        <span>{{ accounter }}</span>
       </button>
     </div>
   </div>
@@ -40,14 +40,19 @@
 <script>
 export default {
   name: "HeaderComponent",
-  data() {
-    return {
-      isLogin: false,
-    };
-  },
+  props: ["isLogin"],
   methods: {
     toNextPage(path) {
       this.$router.push(path);
+    },
+  },
+  computed: {
+    accounter() {
+      if (this.isLogin) {
+        return localStorage.getItem("accounter");
+      } else {
+        return "";
+      }
     },
   },
 };

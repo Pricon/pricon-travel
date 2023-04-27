@@ -7,7 +7,7 @@
         </div>
         <!-- 酒店信息 -->
         <div class="hotel_details">
-          <div class="hotelName">{{ hotelItem.hotelName }}</div>
+          <div class="hotelName">{{ hotelItem.name }}</div>
           <div class="rate">
             <el-rate v-model="hotelItem.rate" disabled text-color="#ff9900">
             </el-rate>

@@ -254,7 +254,7 @@ export default {
         center: true,
       });
     },
-    nextStep(registerForm) {
+    async nextStep(registerForm) {
       // 手机验证->设置密码
       if (this.step == 1) {
         // 检查验证码
@@ -282,7 +282,7 @@ export default {
           });
         } else {
           // 发送请求，将用户注册信息发送到服务端
-          let res = this.register({
+          let res = await this.register({
             accounter: registerForm.accounter,
             password: registerForm.password,
             telephone: registerForm.telNumber,
@@ -293,17 +293,21 @@ export default {
             this.$refs.registerComplete.style.display = "block";
             this.step++;
           } else {
+            let msg = "注册失败，请重新注册";
+            if (res.msg) {
+              msg = res.msg;
+            }
             this.$message({
               showClose: true,
-              message: "注册失败，请重新注册",
+              message: msg,
               type: "error",
             });
           }
         }
       }
     },
-    async register(body) {
-      return await this.$post("/register", body);
+    register(body) {
+      return this.$post("/register", body);
     },
     toNextPage(path) {
       this.$router.push(path);

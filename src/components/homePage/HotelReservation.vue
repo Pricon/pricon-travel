@@ -10,14 +10,32 @@
     <div class="positon_date_layout">
       <!-- 选择目的地、酒店 -->
       <div class="destination">
-        <div>目的地/酒店名称</div>
-        <el-input
+        <div>目的地</div>
+        <!-- <el-input
           v-model="destination"
           placeholder="输入城市或者酒店名称"
           clearable
           size="small"
         >
-        </el-input>
+        </el-input> -->
+        <el-select
+          v-model="destination"
+          filterable
+          placeholder="请选择"
+          size="small"
+        >
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.label"
+          >
+            <span style="float: left">{{ item.label }}</span>
+            <span style="float: right; color: #8492a6; font-size: 13px">{{
+              item.value
+            }}</span>
+          </el-option>
+        </el-select>
       </div>
       <!-- 分割线 -->
       <el-divider direction="vertical"></el-divider>
@@ -197,7 +215,7 @@
           </el-input>
         </div>
       </div>
-      <button id="bt_search">
+      <button id="bt_search" @click="submitForm()">
         <span>搜索</span>
       </button>
     </div>
@@ -209,7 +227,7 @@ export default {
   name: "HotelReservation",
   data() {
     return {
-      destination: "",
+      destination: "上海",
       keywords: "",
       pickerOptions: {
         // 默认小于当前时间的日期不可选择
@@ -217,7 +235,7 @@ export default {
           return time.getTime() < Date.now() - 3600 * 1000 * 24;
         },
       },
-      start_end_date: "",
+      start_end_date: [],
       rooms: {
         roomNumber: 1,
         adultNumber: 1,
@@ -231,6 +249,24 @@ export default {
         fifthLevel: false,
         isShowDropdown: false,
       },
+      options: [
+        {
+          value: "Beijing",
+          label: "北京",
+        },
+        {
+          value: "Shanghai",
+          label: "上海",
+        },
+        {
+          value: "Nanjing",
+          label: "南京",
+        },
+        {
+          value: "Hangzhou",
+          label: "杭州",
+        },
+      ],
     };
   },
   mounted() {
@@ -239,8 +275,8 @@ export default {
   methods: {
     //默认开始时间为当前时间，结束时间为当前时间的下一天（明天）
     getNowTime() {
-      const start = Date.now();
-      const end = Date.now() + 3600 * 1000 * 24;
+      const start = new Date();
+      const end = new Date(start.getTime() + 3600 * 1000 * 24);
       return [start, end];
     },
     changeDropdownDisplay(moduleName) {
@@ -313,6 +349,22 @@ export default {
       ) {
         this.rooms.roomNumber--;
       }
+    },
+    submitForm() {
+      // 提交 目的地、入住时间、房间数以及人数、酒店级别、关键字 ,并跳转页面
+      this.$router.push({
+        path: "/hotels/list",
+        query: {
+          destination: this.destination,
+          startTime: Date.parse(this.start_end_date[0]),
+          endTime: Date.parse(this.start_end_date[1]),
+          roomNumber: this.rooms.roomNumber,
+          adultNumber: this.rooms.adultNumber,
+          childNumber: this.rooms.childNumber,
+          hotelLevel: this.hotelLevel,
+          keywords: this.keywords,
+        },
+      });
     },
   },
   computed: {

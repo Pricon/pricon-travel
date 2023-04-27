@@ -2,7 +2,10 @@
 <template>
   <div class="container">
     <MemuLeft></MemuLeft>
-    <HotelContent></HotelContent>
+    <HotelContent
+      :isLogin="isLogin"
+      :hotelRecommend="hotelRecommend"
+    ></HotelContent>
   </div>
 </template>
 
@@ -15,6 +18,27 @@ export default {
   components: {
     MemuLeft,
     HotelContent,
+  },
+  data() {
+    return {
+      hotelRecommend: [],
+    };
+  },
+  computed: {
+    isLogin() {
+      let token = localStorage.getItem("token");
+      if (token) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  async created() {
+    const res = await this.$post("/home", {
+      city: ["北京", "上海", "南京", "杭州"],
+    });
+    this.hotelRecommend = res.data;
   },
 };
 </script>

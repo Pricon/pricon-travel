@@ -84,7 +84,9 @@ export default {
         password: loginForm.password,
       });
       if (res.code == 0 && res.msg == "登录成功") {
-        localStorage.setItem("token", res.token);
+        localStorage.setItem("accounter", res.data.accounter);
+        localStorage.setItem("token", res.data.token);
+
         this.toNextPage("/");
       } else {
         this.$message({

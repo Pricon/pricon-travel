@@ -8,7 +8,7 @@ const request = function (url, params, config, method) {
         },
         (err) => {
           if (err.Cancel) {
-            console.log(err);
+            console.log("error:", err);
           } else {
             reject(err);
           }

@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <HeaderComponent></HeaderComponent>
+    <HeaderComponent :isLogin="isLogin"></HeaderComponent>
     <div class="mainContent">
-      <HotelMainComponent></HotelMainComponent>
+      <HotelMainComponent :hotelRecommend="hotelRecommend"></HotelMainComponent>
       <HotelRankAside></HotelRankAside>
     </div>
     <FooterComponent></FooterComponent>
@@ -17,6 +17,7 @@ import FooterComponent from "./FooterComponent.vue";
 
 export default {
   name: "HotelContent",
+  props: ["isLogin", "hotelRecommend"],
   components: {
     HeaderComponent,
     HotelMainComponent,

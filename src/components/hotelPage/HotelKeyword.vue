@@ -7,7 +7,7 @@
         <el-tabs v-model="activeName">
           <el-tab-pane label="热门筛选" name="first">
             <div>
-              <el-tag v-for="(item, index) in city.上海.hot" :key="index">{{
+              <el-tag v-for="(item, index) in hot" :key="index">{{
                 item
               }}</el-tag>
             </div>
@@ -15,10 +15,10 @@
           <el-tab-pane label="商业区" name="second">
             <div
               class="business_aera_tag"
-              v-for="(item, index) in city.上海.businessAera"
+              v-for="(item, index) in bus"
               :key="index"
             >
-              <div class="business_aera_tag_title">{{ item.area }}</div>
+              <div class="business_aera_tag_title">{{ item.businessArea }}</div>
               <div class="business_aera_tag_popularity">
                 <span>{{ item.popularity }}</span
                 >旅客选择
@@ -27,21 +27,17 @@
           </el-tab-pane>
           <el-tab-pane label="机场车站" name="third">
             <div>
-              <el-tag
-                v-for="(item, index) in city.上海.airportOrStation"
-                :key="index"
-                >{{ item }}</el-tag
-              >
+              <el-tag v-for="(item, index) in airStation" :key="index">{{
+                item
+              }}</el-tag>
             </div>
           </el-tab-pane>
           <el-tab-pane label="行政区" name="fourth">
             <div>
               <div>
-                <el-tag
-                  v-for="(item, index) in city.上海.administrativeArea"
-                  :key="index"
-                  >{{ item }}</el-tag
-                >
+                <el-tag v-for="(item, index) in adminArea" :key="index">{{
+                  item
+                }}</el-tag>
               </div>
             </div>
           </el-tab-pane>
@@ -91,6 +87,14 @@
 <script>
 export default {
   name: "HotelKeyword",
+  props: [
+    "hot",
+    "bus",
+    "airStation",
+    "adminArea",
+    "selectKeyword",
+    "deleteKeyword",
+  ],
   data() {
     return {
       activeName: "first",
@@ -201,6 +205,9 @@ export default {
   font-size: 12px;
   text-align: center;
   color: #409eff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .business_aera_tag .business_aera_tag_popularity {
   font-size: 8px;

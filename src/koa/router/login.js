@@ -32,25 +32,39 @@ login.post("/", async (ctx) => {
       })
     })
     if (passArray.length > 0) {
+      // 生成 token 返回给客户端
+      let myToken = jsonwebtoken.sign(
+        {
+          data: {
+            accounter: accounter,
+            password: password
+          },
+          // 设置 token 过期时间
+          exp: Math.floor(Date.now() / 1000) + 60 * 60, // 60 seconds * 60 minutes = 1 hour
+        },
+        secret
+      )
+      // 返回响应
       ctx.status = 200;
       ctx.body = {
         data: {
-          // 生成 token 返回给客户端
-          token: jsonwebtoken.sign(
-            {
-              data: {
-                accounter: accounter,
-                password: password
-              },
-              // 设置 token 过期时间
-              exp: Math.floor(Date.now() / 1000) + 60 * 60, // 60 seconds * 60 minutes = 1 hour
-            },
-            secret
-          ),
+          accounter: accounter,
+          token: myToken,
         },
         code: 0,
         msg: "登录成功"
       };
+
+      // 更新token到数据库
+      let updateRet = await new Promise((resolve, reject) => {
+        const sql_query = "update userInfo set token=? where accounter=?";
+        const params_query = [myToken, accounter];
+        return db.query(sql_query, params_query, (err, result) => {
+          if (err) throw err;
+          resolve(result);
+        })
+      })
+
     } else {
       ctx.status = 401;
       ctx.body = {

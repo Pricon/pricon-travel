@@ -3,7 +3,7 @@
   <div class="hotel_content_layout">
     <HotelReservation></HotelReservation>
     <ADVContent></ADVContent>
-    <HotelRecommand></HotelRecommand>
+    <HotelRecommand :hotelList="hotelRecommend"></HotelRecommand>
   </div>
 </template>
 
@@ -14,6 +14,7 @@ import HotelRecommand from "./HotelRecommand";
 
 export default {
   name: "HotelMainComponent",
+  props: ["hotelRecommend"],
   components: {
     HotelReservation,
     ADVContent,

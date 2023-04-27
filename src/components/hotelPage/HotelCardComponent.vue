@@ -1,11 +1,11 @@
 <template>
   <div class="hotel_list">
-    <div class="hotel_card" v-for="hotel in hotelList" :key="hotel.rate">
+    <div class="hotel_card" v-for="hotel in hotelList" :key="hotel.id">
       <div class="hotel_card_left">
         <img :src="hotel.pic" />
         <div class="hotel_card_left_info">
           <div>
-            <div class="hotel_name">{{ hotel.hotelName }}</div>
+            <div class="hotel_name">{{ hotel.name }}</div>
             <div class="hotel_rate">
               <el-rate v-model="hotel.rate" disabled text-color="#ff9900">
               </el-rate>
@@ -13,14 +13,17 @@
             </div>
           </div>
           <div class="hotel_keywords">
-            <span v-for="k in hotel.keywords" :key="k"
+            <span v-for="(k, index) in hotel.keywords" :key="index + k"
               >{{ k }}<i class="iconfont">&#xe680;</i></span
             >
           </div>
           <div class="hotel_service_tag">
-            <el-tag v-for="s in hotel.service" :key="s" size="small">{{
-              s
-            }}</el-tag>
+            <el-tag
+              v-for="(s, index) in hotel.services"
+              :key="s + index"
+              size="small"
+              >{{ s }}</el-tag
+            >
           </div>
         </div>
       </div>

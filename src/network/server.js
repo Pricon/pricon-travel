@@ -2,13 +2,16 @@ import axios from "axios";
 import router from "../router/index";
 
 let baseURL = "http://localhost:5050";
+if (process.env.NODE_ENV === "production") {
+  baseURL = "http://localhost:5050";
+}
 
 //利用axios对象的方法create，去创建一个axios实例
 const service = axios.create({
   //基础路径
   baseURL,
-  //请求超时时间   （10s内没响应就失败了）
-  timeout: 10000,
+  //请求超时时间   （30s内没响应就失败了）
+  timeout: 30000,
 });
 
 //请求拦截器
@@ -21,7 +24,7 @@ service.interceptors.request.use(
     return config;
   },
   (error) => {
-    //请求失败的返回，后面的then或者catch回调随便写不写
+    //请求失败的返回
     return Promise.reject(error);
   }
 );
@@ -36,9 +39,10 @@ service.interceptors.response.use(
   (error) => {
     if (error.response) {
       if (error.response.status === 401) {
-        router.push("/login");
+        router.replace("/login");
       }
     }
+
     //响应失败的返回
     return Promise.reject(error);
   }
