@@ -1,6 +1,6 @@
 // 酒店搜索列表页面
 <template>
-  <div>
+  <div class="hotel_list_layout">
     <HeaderAndSearch
       :isLogin="isLogin"
       :isHome="false"
@@ -296,6 +296,10 @@ export default {
 </script>
 
 <style>
+.hotel_list_layout {
+  overflow-x: scroll;
+  min-width: 1400px;
+}
 .main_content {
   background-color: #f5f7fa;
   padding: 15px 100px;

@@ -331,6 +331,11 @@ export default {
   display: flex;
   margin-top: 15px;
 }
+@media screen and (min-width: 1400px) {
+  .hotel_search_layout .label_style {
+    font-size: 12px;
+  }
+}
 .hotel_search_layout .hotel_search {
   width: calc(100% - 80px);
   height: 80px;

@@ -1,6 +1,6 @@
 // 酒店预定信息展示页面
 <template>
-  <div>
+  <div class="hotel_details_layout">
     <HeaderAndSearch
       :isLogin="isLogin"
       :searchInfo="searchInfo"
@@ -150,4 +150,8 @@ export default {
 </script>
 
 <style>
+.hotel_details_layout {
+  overflow-x: scroll;
+  min-width: 1400px;
+}
 </style>

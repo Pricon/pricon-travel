@@ -44,6 +44,7 @@ export default {
 /* 左侧菜单栏整体布局样式 */
 .menu_left_layout {
   width: 150px;
+  min-width: 150px;
   height: 100%;
   position: relative;
   z-index: 10000;

@@ -16,9 +16,8 @@ export default {
 body {
   margin: 0;
   padding: 0;
-}
-#app {
   box-sizing: border-box;
+  overflow-x: scroll;
 }
 
 .icon {
