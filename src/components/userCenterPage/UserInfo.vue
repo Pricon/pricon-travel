@@ -15,6 +15,10 @@
         <el-descriptions-item label="性别">未设置</el-descriptions-item>
         <el-descriptions-item label="地址">未设置</el-descriptions-item>
       </el-descriptions>
+
+      <div>
+        <button class="exitLogin" @click="exit()">退出登录</button>
+      </div>
     </div>
   </div>
 </template>
@@ -35,6 +39,19 @@ export default {
     });
     this.userInfo = res.data;
   },
+  methods: {
+    exit() {
+      this.$confirm("确认退出登录？", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      }).then(() => {
+        localStorage.removeItem("accounter");
+        localStorage.removeItem("token");
+        this.$router.push("/");
+      });
+    },
+  },
 };
 </script>
 
@@ -52,5 +69,10 @@ export default {
   border-top: 1px solid #3a85ee3a;
   padding: 30px;
   height: 200px;
+}
+
+.user_info .exitLogin {
+  margin-top: 20px;
+  cursor: pointer;
 }
 </style>

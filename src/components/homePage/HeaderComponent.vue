@@ -192,6 +192,7 @@ export default {
   line-height: 30px;
   cursor: pointer;
   margin-right: 5px;
+  position: relative;
 }
 
 .login .iconfont {
