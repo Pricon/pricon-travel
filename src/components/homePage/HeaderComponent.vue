@@ -183,6 +183,7 @@ export default {
 .login_register_layout .login,
 .user_center_layout .user {
   width: 90px;
+  min-width: 90px;
   height: 30px;
   background-color: #f3f8fd;
   border-style: none;
