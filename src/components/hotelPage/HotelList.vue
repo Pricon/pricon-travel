@@ -1,15 +1,16 @@
 // 酒店列表
 <template>
   <div class="hotel_list_layout">
-    <div class="keywords_layout">
+    <div class="keywords_layout" v-show="isShow">
       <el-tag v-for="(k, index) in keywords" :key="index"
         >{{ k }}
-        <i class="iconfont">&#xe602;</i>
+        <i class="iconfont" @click="deleteKeywordItem(k)">&#xe602;</i>
       </el-tag>
-      <button id="clearAll">清除</button>
+      <button id="clearAll" @click="clearAllItem()">清除</button>
     </div>
     <HotelCardComponent
       :hotelList="hotelList"
+      @toDetailPage="toDetailPage"
       :isShow="true"
     ></HotelCardComponent>
   </div>
@@ -19,12 +20,33 @@
 import HotelCardComponent from "./HotelCardComponent.vue";
 export default {
   name: "HotelList",
-  props: ["hotelList"],
+  props: [
+    "hotelList",
+    "keywords",
+    "deleteKeyword",
+    "clearAll",
+    "toHotelDetail",
+  ],
   components: { HotelCardComponent },
-  data() {
-    return {
-      keywords: ["迪士尼乐园"],
-    };
+  computed: {
+    isShow() {
+      if (this.keywords.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  methods: {
+    deleteKeywordItem(item) {
+      this.$emit("deleteKeyword", item);
+    },
+    clearAllItem() {
+      this.$emit("clearAll");
+    },
+    toDetailPage(hotel) {
+      this.$emit("toHotelDetail", hotel);
+    },
   },
 };
 </script>

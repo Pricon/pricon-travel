@@ -1,6 +1,6 @@
 <template>
   <div class="hotels_layout">
-    <HeaderComponent :isLogin="isLogin"></HeaderComponent>
+    <HeaderComponent :isLogin="isLogin" :isHome="isHome"></HeaderComponent>
     <div class="hotel_search_layout">
       <div class="hotel_search">
         <!-- 选择目的地、酒店 -->
@@ -160,7 +160,7 @@
 import HeaderComponent from "../homePage/HeaderComponent.vue";
 export default {
   name: "HeaderAndSearch",
-  props: ["isLogin", "searchInfo", "changeCity"],
+  props: ["isLogin", "isHome", "searchInfo", "changeCity", "updateSearchInfo"],
   components: { HeaderComponent },
   data() {
     return {
@@ -288,19 +288,33 @@ export default {
     this.rooms.adultNumber = this.searchInfo.adultNumber;
     this.rooms.childNumber = this.searchInfo.childNumber;
     this.keywords = this.searchInfo.keywords;
-    if (this.start_end_date.length == 0) {
+    if (this.start_end_date[0] == 0 && this.start_end_date[1] == 0) {
       this.start_end_date = this.getNowTime();
     }
   },
   watch: {
     destination(newVal, oldVal) {
-      if (oldVal.length != 0) {
+      if (oldVal == undefined || oldVal.length != 0) {
         this.$emit("changeCity", newVal);
+        this.$emit("updateSearchInfo", "destination", newVal);
       }
     },
-    start_end_date() {
-      this.days =
-        (this.start_end_date[1] - this.start_end_date[0]) / (3600 * 1000 * 24);
+    start_end_date(newVal) {
+      this.days = (newVal[1] - newVal[0]) / (3600 * 1000 * 24);
+      this.$emit("updateSearchInfo", "startTime", newVal[0]);
+      this.$emit("updateSearchInfo", "endTime", newVal[1]);
+    },
+    "searchInfo.destination"(newVal) {
+      this.destination = newVal;
+    },
+    "rooms.roomNumber"(newVal) {
+      this.$emit("updateSearchInfo", "roomNumber", newVal);
+    },
+    "rooms.adultNumber"(newVal) {
+      this.$emit("updateSearchInfo", "adultNumber", newVal);
+    },
+    "rooms.childNumber"(newVal) {
+      this.$emit("updateSearchInfo", "childNumber", newVal);
     },
   },
 };

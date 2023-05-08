@@ -5,6 +5,9 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import HotelListPage from "../pages/HotelListPage";
 import HotelDetailsPage from "../pages/HotelDetailsPage.vue";
+import UserCenterPage from "../pages/UserCenterPage.vue";
+import UserInfo from "../components/userCenterPage/UserInfo.vue";
+import OrderInfo from "../components/userCenterPage/OrderInfo.vue";
 
 Vue.use(VueRouter)
 
@@ -32,12 +35,32 @@ const routes = [
   {
     path: '/hotels/list',
     name: 'hotels',
-    component: HotelListPage
+    component: HotelListPage,
+    meta: {
+      keepAlive: true
+    }
   },
   {
     path: '/hotels/details',
     name: 'details',
-    component: HotelDetailsPage
+    component: HotelDetailsPage,
+  },
+  {
+    path: '/usercenter',
+    name: 'usercenter',
+    component: UserCenterPage,
+    children: [
+      {
+        path: 'userinfo',
+        name: 'userinfo',
+        component: UserInfo,
+      },
+      {
+        path: 'orderinfo',
+        name: 'orderinfo',
+        component: OrderInfo,
+      }
+    ]
   },
 ]
 

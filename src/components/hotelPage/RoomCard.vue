@@ -4,7 +4,7 @@
       <div class="room_card_left_middle">
         <div class="room_card_left">
           <img :src="room.pic" />
-          <div class="room_name">{{ room.roomName }}</div>
+          <div class="room_name">{{ room.name }}</div>
           <div class="room_desc">
             <span v-for="desc in room.desc" :key="desc">{{ desc }}</span>
           </div>
@@ -42,7 +42,35 @@
       </div>
       <div class="room_card_right">
         <div class="room_price">{{ room.price }}</div>
-        <div><button class="bt_reserve">预订</button></div>
+        <div>
+          <button class="bt_reserve" @click="reserve(room)">预订</button>
+          <el-dialog title="确认订单信息" :visible.sync="dialogFormVisible">
+            <el-form :model="form">
+              <el-form-item label="酒店名称:">
+                <span>{{ form.hotelName }}</span>
+              </el-form-item>
+              <el-form-item label="入住日期:">
+                <span
+                  >{{ form.start_end_date[0] }}&nbsp;至&nbsp;{{
+                    form.start_end_date[1]
+                  }}&nbsp; {{ form.days }}晚/{{ form.roomNumber }}间
+                </span>
+              </el-form-item>
+              <el-form-item label="房间类型:">
+                <span>{{ form.roomName }}</span>
+              </el-form-item>
+              <el-form-item label="价格:">
+                <span>¥{{ form.price }}</span>
+              </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogFormVisible = false">取 消</el-button>
+              <el-button type="primary" @click="submitForm(form)"
+                >确 定</el-button
+              >
+            </div>
+          </el-dialog>
+        </div>
       </div>
     </div>
   </div>
@@ -51,7 +79,67 @@
 <script>
 export default {
   name: "RoomCard",
-  props: ["rooms"],
+  props: ["rooms", "searchInfo"],
+  data() {
+    return {
+      dialogFormVisible: false,
+      form: {
+        orderDate: "", //预订时间
+        hotelName: "",
+        start_end_date: [], //入住时间
+        days: 0,
+        roomNumber: 0,
+        roomName: 0,
+        price: 0,
+        status: "已完成",
+      },
+    };
+  },
+  methods: {
+    reverseTime(time) {
+      let date = new Date(time);
+      let year = date.getFullYear();
+      let month =
+        date.getMonth() + 1 < 10 ? "0" + date.getMonth() : date.getMonth() + 1;
+      let day = date.getDate();
+      return year + "-" + month + "-" + day;
+    },
+    reserve(roomInfo) {
+      this.dialogFormVisible = true;
+      this.form.hotelName = roomInfo.hotelName;
+      this.form.start_end_date[0] = this.reverseTime(this.searchInfo.startTime);
+      this.form.start_end_date[1] = this.reverseTime(this.searchInfo.endTime);
+      this.form.days =
+        (this.searchInfo.endTime - this.searchInfo.startTime) /
+        (3600 * 1000 * 24);
+      this.form.roomNumber = this.searchInfo.roomNumber;
+      this.form.roomName = roomInfo.name;
+
+      this.form.price = this.form.days * roomInfo.price * this.form.roomNumber;
+    },
+    async submitForm(form) {
+      let accounter = localStorage.getItem("accounter");
+
+      let date = Date.now();
+      this.form.orderDate = this.reverseTime(date);
+
+      let res = await this.$post("/hotels/reserve", {
+        form: form,
+        accounter: accounter,
+      });
+      if (res.code == 0 && res.msg == "success") {
+        this.dialogFormVisible = false;
+        this.$alert("预订成功！", {
+          confirmButtonText: "确定",
+        });
+      } else {
+        this.dialogFormVisible = false;
+        this.$alert("预订失败，请重新预订！", {
+          confirmButtonText: "确定",
+        });
+      }
+    },
+  },
 };
 </script>
 

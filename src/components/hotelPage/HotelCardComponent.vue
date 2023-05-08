@@ -7,7 +7,11 @@
           <div>
             <div class="hotel_name">{{ hotel.name }}</div>
             <div class="hotel_rate">
-              <el-rate v-model="hotel.rate" disabled text-color="#ff9900">
+              <el-rate
+                v-model.number="hotel.rate"
+                disabled
+                text-color="#ff9900"
+              >
               </el-rate>
               <!-- <i class="iconfont">&#xe63f;</i> -->
             </div>
@@ -35,7 +39,9 @@
         <div class="hotel_price">
           <span>{{ hotel.price }}</span>
         </div>
-        <button id="detail" v-show="isShow">查看详情</button>
+        <button id="detail" @click="toDetail(hotel)" v-show="isShow">
+          查看详情
+        </button>
       </div>
     </div>
   </div>
@@ -44,7 +50,12 @@
 <script>
 export default {
   name: "HotelCardComponent",
-  props: ["hotelList", "isShow"],
+  props: ["hotelList", "toDetailPage", "isShow"],
+  methods: {
+    toDetail(hotel) {
+      this.$emit("toDetailPage", hotel);
+    },
+  },
 };
 </script>
 

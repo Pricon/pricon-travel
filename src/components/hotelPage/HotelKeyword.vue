@@ -7,9 +7,12 @@
         <el-tabs v-model="activeName">
           <el-tab-pane label="热门筛选" name="first">
             <div>
-              <el-tag v-for="(item, index) in hot" :key="index">{{
-                item
-              }}</el-tag>
+              <el-tag
+                v-for="(item, index) in hot"
+                :key="index"
+                @click="updateKeyword('area', item)"
+                >{{ item }}</el-tag
+              >
             </div>
           </el-tab-pane>
           <el-tab-pane label="商业区" name="second">
@@ -17,6 +20,7 @@
               class="business_aera_tag"
               v-for="(item, index) in bus"
               :key="index"
+              @click="updateKeyword('area', item)"
             >
               <div class="business_aera_tag_title">{{ item.businessArea }}</div>
               <div class="business_aera_tag_popularity">
@@ -27,17 +31,23 @@
           </el-tab-pane>
           <el-tab-pane label="机场车站" name="third">
             <div>
-              <el-tag v-for="(item, index) in airStation" :key="index">{{
-                item
-              }}</el-tag>
+              <el-tag
+                v-for="(item, index) in airStation"
+                :key="index"
+                @click="updateKeyword('area', item)"
+                >{{ item }}</el-tag
+              >
             </div>
           </el-tab-pane>
           <el-tab-pane label="行政区" name="fourth">
             <div>
               <div>
-                <el-tag v-for="(item, index) in adminArea" :key="index">{{
-                  item
-                }}</el-tag>
+                <el-tag
+                  v-for="(item, index) in adminArea"
+                  :key="index"
+                  @click="updateKeyword('area', item)"
+                  >{{ item }}</el-tag
+                >
               </div>
             </div>
           </el-tab-pane>
@@ -47,10 +57,12 @@
     <dl class="price_filter">
       <dt>星级价格</dt>
       <dd>
-        <el-tag>五星(钻)</el-tag>
-        <el-tag>四星(钻)</el-tag>
-        <el-tag>三星(钻)</el-tag>
-        <el-tag>二星(钻)及以下</el-tag>
+        <el-tag
+          v-for="(item, index) in hotelLevel"
+          :key="index + item"
+          @click="updateKeyword('level', item)"
+          >{{ item }}</el-tag
+        >
       </dd>
     </dl>
     <dl class="advanced_filter">
@@ -59,23 +71,36 @@
         <div>
           <el-tabs v-model="advancedName">
             <el-tab-pane label="评分" name="first">
-              <el-tag>4.5分以上</el-tag>
-              <el-tag>4分以上</el-tag>
-              <el-tag>3.5分以上</el-tag>
+              <el-tag
+                v-for="(item, index) in advanced.level"
+                :key="index + item"
+                @click="updateKeyword('advanced.rate', item)"
+                >{{ item }}</el-tag
+              >
             </el-tab-pane>
             <el-tab-pane label="房型" name="second">
-              <el-tag>双床房</el-tag>
-              <el-tag>大床房</el-tag>
+              <el-tag
+                v-for="(item, index) in advanced.roomType"
+                :key="index + item"
+                @click="updateKeyword('advanced.roomType', item)"
+                >{{ item }}</el-tag
+              >
             </el-tab-pane>
             <el-tab-pane label="住宿类型" name="third">
-              <el-tag>酒店</el-tag>
-              <el-tag>民宿</el-tag>
-              <el-tag>青年旅舍</el-tag>
+              <el-tag
+                v-for="(item, index) in advanced.hotelType"
+                :key="index + item"
+                @click="updateKeyword('advanced.hotelType', item)"
+                >{{ item }}</el-tag
+              >
             </el-tab-pane>
             <el-tab-pane label="早餐" name="fourth">
-              <el-tag>不含早餐</el-tag>
-              <el-tag>单份早餐</el-tag>
-              <el-tag>双份早餐</el-tag>
+              <el-tag
+                v-for="(item, index) in advanced.breakfast"
+                :key="index + item"
+                @click="updateKeyword('advanced.breakfast', item)"
+                >不含早餐</el-tag
+              >
             </el-tab-pane>
           </el-tabs>
         </div>
@@ -99,50 +124,19 @@ export default {
     return {
       activeName: "first",
       advancedName: "first",
-      city: {
-        上海: {
-          hot: ["迪士尼度假区", "外滩", "浦东国际机场", "虹桥火车站", "陆家嘴"],
-          businessAera: [
-            { area: "迪士尼度假区", popularity: "25%" },
-            { area: "人民广场区", popularity: "16.5%" },
-            { area: "上海火车站区", popularity: "8.3%" },
-            { area: "外滩核心区", popularity: "5.9%" },
-            { area: "徐家汇区", popularity: "5.1%" },
-          ],
-          airportOrStation: ["虹桥火车站/机场", "浦东国际机场", "上海火车站"],
-          administrativeArea: [
-            "静安区",
-            "徐汇区",
-            "普陀区",
-            "浦东新区",
-            "黄埔区",
-          ],
-        },
-        南京: {
-          hot: [
-            "夫子庙",
-            "钟山风景区",
-            "南京南站",
-            "新街口",
-            "玄武湖景区",
-            "禄口国际机场",
-          ],
-          businessAera: [
-            { area: "火车站区", popularity: "13%" },
-            { area: "秦淮区", popularity: "18.9%" },
-            { area: "禄口国际机场区", popularity: "8.2%" },
-          ],
-          airportOrStation: ["南京南站", "禄口国际机场", "南京站"],
-          administrativeArea: [
-            "秦淮区",
-            "玄武区",
-            "江宁区",
-            "栖霞区",
-            "浦口区",
-          ],
-        },
+      hotelLevel: ["五星(钻)", "四星(钻)", "三星(钻)", "二星(钻)及以下"],
+      advanced: {
+        level: ["4.5分以上", "4分以上", "3.5分以上"],
+        roomType: ["大床房", "双床房"],
+        hotelType: ["酒店", "民宿", "青年旅舍"],
+        breakfast: ["不含早餐", "单份早餐", "双份早餐"],
       },
     };
+  },
+  methods: {
+    updateKeyword(type, value) {
+      this.$emit("selectKeyword", type, value);
+    },
   },
 };
 </script>

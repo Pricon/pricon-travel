@@ -17,7 +17,7 @@ login.post("/", async (ctx) => {
     const sql_query = "select * from userInfo where accounter=?";
     const params_query = [accounter];
     return db.query(sql_query, params_query, (err, result) => {
-      if (err) throw err;
+      if (err) reject(err);
       resolve(result);
     })
   })
@@ -27,7 +27,7 @@ login.post("/", async (ctx) => {
       const sql_query = "select * from userInfo where password=?";
       const params_query = [password];
       return db.query(sql_query, params_query, (err, result) => {
-        if (err) throw err;
+        if (err) reject(err);
         resolve(result);
       })
     })
@@ -60,7 +60,7 @@ login.post("/", async (ctx) => {
         const sql_query = "update userInfo set token=? where accounter=?";
         const params_query = [myToken, accounter];
         return db.query(sql_query, params_query, (err, result) => {
-          if (err) throw err;
+          if (err) reject(err);
           resolve(result);
         })
       })

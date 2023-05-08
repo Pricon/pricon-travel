@@ -18,7 +18,7 @@ register.post("/", async (ctx) => {
     const sql_query = "select * from userInfo where accounter=?";
     const params_query = [accounter];
     return db.query(sql_query, params_query, (err, result) => {
-      if (err) throw err;
+      if (err) reject(err);
       resolve(result);
     })
   })
@@ -44,7 +44,7 @@ register.post("/", async (ctx) => {
       const params_insert = [accounter, password, telephone, email];
       db.query(sql_insert, params_insert, (err, result) => {
         if (err) {
-          throw err;
+          reject(err);
         }
         resolve(result);
       })

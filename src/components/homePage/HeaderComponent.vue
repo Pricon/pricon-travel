@@ -7,11 +7,34 @@
       </div>
       <!-- 使用element-ui中的input搜索框 -->
       <div>
-        <el-input placeholder="搜索任何旅游相关" class="input-with-select">
-          <el-button slot="append" class="search-button">
+        <el-autocomplete
+          v-model="hotelName"
+          :fetch-suggestions="querySearchAsync"
+          placeholder="搜索酒店"
+          :trigger-on-focus="false"
+          v-show="isHome"
+        >
+          <el-button
+            slot="append"
+            class="search-button"
+            @click="searchHotels(hotelName)"
+          >
+            <i class="iconfont">&#xe632;</i>
+          </el-button></el-autocomplete
+        >
+        <!-- <el-input
+          placeholder="搜索酒店"
+          class="input-with-select"
+          v-model="hotelName"
+        >
+          <el-button
+            slot="append"
+            class="search-button"
+            @click="searchHotels(hotelName)"
+          >
             <i class="iconfont">&#xe632;</i>
           </el-button>
-        </el-input>
+        </el-input> -->
       </div>
     </div>
 
@@ -24,9 +47,14 @@
       <span class="iconfont">&#xe680;</span>
       <button class="register" @click="toNextPage('/register')">注册</button>
     </div>
-    <!-- 用户中心 -->
+
     <div class="user_center_layout" v-show="isLogin">
-      <button class="user" @click="toNextPage('/usercenter')">
+      <!-- 首页 -->
+      <div class="home_page" v-show="!isHome">
+        <button @click="toNextPage('/')">首页</button>
+      </div>
+      <!-- 用户中心 -->
+      <button class="user" @click="toNextPage('/usercenter/userinfo')">
         <!-- <i class="iconfont">&#xe668;</i> -->
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-icon-test1"></use>
@@ -40,10 +68,37 @@
 <script>
 export default {
   name: "HeaderComponent",
-  props: ["isLogin"],
+  props: ["isLogin", "isHome"],
+  data() {
+    return {
+      hotelName: "",
+      searchList: [],
+      timeout: null,
+    };
+  },
   methods: {
     toNextPage(path) {
       this.$router.push(path);
+    },
+    searchHotels(hotelName) {
+      this.$router.push({
+        path: "/hotels/details",
+        query: {
+          type: "search",
+          hotelName: hotelName,
+        },
+      });
+    },
+    async querySearchAsync(queryString, cb) {
+      let res = await this.$post("/hotels/search", {
+        queryString: queryString,
+      });
+      this.searchList = res.data;
+
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(() => {
+        cb(this.searchList);
+      }, 500 * Math.random());
     },
   },
   computed: {
@@ -83,7 +138,7 @@ export default {
   font-family: "iconfont";
   content: "\e605";
 }
-.logo_search_layout .input-with-select {
+.logo_search_layout .el-autocomplete {
   width: 300px;
 }
 .logo_search_layout .search-button {
@@ -101,6 +156,30 @@ export default {
   align-items: center;
   margin-right: 4vw;
 }
+
+/* 首页 */
+.user_center_layout .home_page button {
+  font-size: 15px;
+  color: black;
+  background: none;
+  border: none;
+  margin-left: 100px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.user_center_layout .home_page button::before {
+  font-family: "iconfont";
+  content: "\e8b9";
+  color: #5d77a4;
+  font-size: 18px;
+  margin-right: 5px;
+}
+.user_center_layout .home_page button:hover,
+.user_center_layout .home_page button:hover::before {
+  color: #3a84ee;
+}
+
+/* 个人中心 */
 .login_register_layout .login,
 .user_center_layout .user {
   width: 90px;

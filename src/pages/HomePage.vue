@@ -4,6 +4,7 @@
     <MemuLeft></MemuLeft>
     <HotelContent
       :isLogin="isLogin"
+      :isHome="true"
       :hotelRecommend="hotelRecommend"
     ></HotelContent>
   </div>
