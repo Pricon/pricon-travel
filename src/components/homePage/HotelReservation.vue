@@ -401,6 +401,7 @@ export default {
 /* 酒店预定框整体布局 */
 .hotel_reservation_layout {
   width: 740px;
+  min-width: 740px;
   height: 260px;
   background-image: url("https://pic.90sheji.com/design/00/61/73/20/5d67504dbaccf.jpg%21/fh/465/quality/90/unsharp/true/compress/true/canvas/1000x465a0a0/cvscolor/FFFFFFFF");
   background-repeat: no-repeat;
@@ -412,6 +413,7 @@ export default {
   border: 1px solid #c2dcf9;
   padding: 15px;
   box-sizing: border-box;
+  z-index: 11;
 }
 .title_layout {
   font-size: 25px;

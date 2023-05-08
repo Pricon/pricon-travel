@@ -30,6 +30,7 @@ export default {
   justify-content: space-between;
   line-height: 72px;
   text-align: center;
+  min-width: 1280px;
 }
 /* 左边logo布局 */
 .login_header_left_logo {

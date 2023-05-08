@@ -34,6 +34,9 @@ export default {
   flex-direction: column;
   flex: 1;
   margin: 0 15px;
+  width: 1185px;
+  min-width: 1180px;
+  overflow: auto;
 }
 .mainContent {
   display: flex;
