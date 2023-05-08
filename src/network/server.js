@@ -1,9 +1,9 @@
 import axios from "axios";
 import router from "../router/index";
 
-let baseURL = "http://localhost:5050";
+let baseURL = "";
 if (process.env.NODE_ENV === "production") {
-  baseURL = "http://localhost:5050";
+  baseURL = "http://pc.logviv.com";
 }
 
 //利用axios对象的方法create，去创建一个axios实例
