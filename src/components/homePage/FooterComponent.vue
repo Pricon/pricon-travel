@@ -30,8 +30,6 @@ footer {
   background-color: #f8fafd;
   padding: 50px 0;
   margin-top: 80px;
-  margin-left: -150px;
-  margin-right: -15px;
 }
 .footer_info_layout {
   width: 100%;

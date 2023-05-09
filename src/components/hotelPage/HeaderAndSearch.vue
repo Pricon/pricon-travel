@@ -68,7 +68,7 @@
             </div>
             <div class="dropdown_menu" v-show="rooms.isShowDropdown">
               <div class="dropdown_item">
-                <div>房间</div>
+                <div class="item_label">房间</div>
                 <div class="input_number">
                   <button
                     class="bt_decrease iconfont"
@@ -90,7 +90,7 @@
                 </div>
               </div>
               <div class="dropdown_item">
-                <div>成人</div>
+                <div class="item_label">成人</div>
                 <div class="input_number">
                   <button
                     class="bt_decrease iconfont"
@@ -112,7 +112,7 @@
                 </div>
               </div>
               <div class="dropdown_item">
-                <div>儿童</div>
+                <div class="item_label">儿童</div>
                 <div class="input_number">
                   <button
                     class="bt_decrease iconfont"
@@ -321,20 +321,12 @@ export default {
 </script>
 
 <style scoped>
-* {
-  box-sizing: border-box;
-}
 .hotels_layout {
   padding: 0 100px;
+  box-sizing: border-box;
 }
 .hotel_search_layout {
   display: flex;
-  margin-top: 15px;
-}
-@media screen and (min-width: 1400px) {
-  .hotel_search_layout .label_style {
-    font-size: 12px;
-  }
 }
 .hotel_search_layout .hotel_search {
   width: calc(100% - 80px);
@@ -438,5 +430,12 @@ export default {
 }
 .hotel_search_layout .bt_search:hover {
   background-color: #3b71dd;
+}
+.item_label {
+  min-width: 33px;
+}
+.input_number {
+  max-width: calc(150px - 33px);
+  min-width: 76px;
 }
 </style>

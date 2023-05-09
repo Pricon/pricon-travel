@@ -53,11 +53,12 @@ export default {
 
 <style>
 .hotel_list_layout {
-  margin: 30px 0;
+  margin-top: 15px;
 }
 .hotel_list_layout .keywords_layout {
   padding: 15px;
   background-color: white;
+  margin-bottom: 15px;
 }
 /* 关键字展示区域 */
 .keywords_layout .el-tag,

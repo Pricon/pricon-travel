@@ -1,9 +1,13 @@
 <template>
-  <div class="container">
-    <HeaderComponent :isLogin="isLogin" :isHome="isHome"></HeaderComponent>
-    <div class="mainContent">
-      <HotelMainComponent :hotelRecommend="hotelRecommend"></HotelMainComponent>
-      <HotelRankAside></HotelRankAside>
+  <div class="hotel_content_container">
+    <div class="header_main_content">
+      <HeaderComponent :isLogin="isLogin" :isHome="isHome"></HeaderComponent>
+      <div class="mainContent">
+        <HotelMainComponent
+          :hotelRecommend="hotelRecommend"
+        ></HotelMainComponent>
+        <HotelRankAside></HotelRankAside>
+      </div>
     </div>
     <FooterComponent></FooterComponent>
   </div>
@@ -28,18 +32,16 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.hotel_content_container {
   position: relative;
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin: 0 15px;
-  width: 1185px;
-  min-width: 1180px;
-  overflow: auto;
+}
+.header_main_content {
+  margin-left: 80px;
 }
 .mainContent {
   display: flex;
-  justify-content: space-between;
 }
 </style>

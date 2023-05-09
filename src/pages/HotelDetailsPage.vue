@@ -40,17 +40,15 @@ export default {
       roomInfo: {},
     };
   },
-  computed: {
-    isLogin() {
-      let token = localStorage.getItem("token");
-      if (token) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-  },
   async created() {
+    // 获取登录状态
+    let token = localStorage.getItem("token");
+    if (token) {
+      this.isLogin = true;
+    } else {
+      this.isLogin = false;
+    }
+
     let type = this.$route.query.type;
     if (type == "jump") {
       this.searchInfo.destination = this.$route.query.destination;
@@ -97,6 +95,14 @@ export default {
     this.roomInfo = res.data;
   },
   async activated() {
+    // 获取登录状态
+    let token = localStorage.getItem("token");
+    if (token) {
+      this.isLogin = true;
+    } else {
+      this.isLogin = false;
+    }
+
     let type = this.$route.query.type;
     if (type == "jump") {
       this.searchInfo.destination = this.$route.query.destination;
@@ -149,9 +155,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .hotel_details_layout {
-  overflow-x: scroll;
-  min-width: 1400px;
+  margin: 0;
+  width: 100%;
+  min-width: 1280px;
+  height: 100%;
+  box-sizing: border-box;
+}
+.main_content {
+  background-color: #f5f7fa;
+  margin-top: 15px;
+  padding: 15px 100px;
 }
 </style>

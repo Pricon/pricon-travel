@@ -1,6 +1,6 @@
 // 注册页面
 <template>
-  <div>
+  <div class="register_layout">
     <LoginHeader></LoginHeader>
     <RegisterComponent></RegisterComponent>
     <FooterComponent></FooterComponent>
@@ -18,5 +18,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.register_layout {
+  min-width: 1280px;
+}
 </style>

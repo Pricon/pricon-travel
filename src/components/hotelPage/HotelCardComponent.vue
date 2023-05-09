@@ -61,9 +61,6 @@ export default {
 
 <style>
 /* 酒店列表 */
-.hotel_list {
-  margin-top: 20px;
-}
 .hotel_list .hotel_card {
   background-color: white;
   margin-bottom: 5px;

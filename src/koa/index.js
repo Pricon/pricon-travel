@@ -10,7 +10,7 @@ const port = 5050;
 app.use(bodyparser())
 // 解决跨域问题
 app.use(async (ctx, next) => {
-  ctx.set("Access-Control-Allow-Origin", "http://pc.logviv.com"); // 添加前端的域名
+  ctx.set("Access-Control-Allow-Origin", "http://43.137.35.59:80"); // 添加前端的域名
   ctx.set(
     "Access-Control-Allow-Headers",
     "Content-Type, Content-Length, Authorization, Accept, X-Requested-With"

@@ -23,19 +23,25 @@ export default {
   data() {
     return {
       hotelRecommend: [],
+      isLogin: false,
     };
   },
-  computed: {
-    isLogin() {
-      let token = localStorage.getItem("token");
-      if (token) {
-        return true;
-      } else {
-        return false;
-      }
-    },
+  activated() {
+    let token = localStorage.getItem("token");
+    if (token) {
+      this.isLogin = true;
+    } else {
+      this.isLogin = false;
+    }
   },
   async created() {
+    let token = localStorage.getItem("token");
+    if (token) {
+      this.isLogin = true;
+    } else {
+      this.isLogin = false;
+    }
+
     const res = await this.$post("/home", {
       city: ["北京", "上海", "南京", "杭州"],
     });
@@ -49,5 +55,7 @@ export default {
   display: flex;
   height: 100%;
   width: 100%;
+  min-width: 1400px;
+  overflow: auto;
 }
 </style>

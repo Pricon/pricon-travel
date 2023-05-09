@@ -80,7 +80,7 @@
             </div>
             <div class="dropdown_menu" v-show="rooms.isShowDropdown">
               <div class="dropdown_item">
-                <div>房间</div>
+                <div class="item_label">房间</div>
                 <div class="input_number">
                   <button
                     class="bt_decrease iconfont"
@@ -102,7 +102,7 @@
                 </div>
               </div>
               <div class="dropdown_item">
-                <div>成人</div>
+                <div class="item_label">成人</div>
                 <div class="input_number">
                   <button
                     class="bt_decrease iconfont"
@@ -124,7 +124,7 @@
                 </div>
               </div>
               <div class="dropdown_item">
-                <div>儿童</div>
+                <div class="item_label">儿童</div>
                 <div class="input_number">
                   <button
                     class="bt_decrease iconfont"
@@ -512,6 +512,7 @@ export default {
   justify-content: space-between;
   font-size: 16px;
   width: 150px;
+  min-width: 150px;
   padding-bottom: 10px;
   color: black;
 }
@@ -522,6 +523,7 @@ export default {
 
 .rooms_and_pepole_number .dropdown_item .input_number input {
   width: 15px;
+  min-width: 5px;
   border: none;
   text-align: center;
   cursor: pointer;
@@ -586,5 +588,12 @@ export default {
 .details_layout button#bt_search::before {
   font-family: "iconfont";
   content: "\e632";
+}
+.item_label {
+  min-width: 33px;
+}
+.input_number {
+  max-width: calc(150px - 33px);
+  min-width: 76px;
 }
 </style>

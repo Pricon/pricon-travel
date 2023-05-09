@@ -63,6 +63,9 @@ export default {
 </script>
 
 <style>
+.el-breadcrumb {
+  margin-bottom: 15px;
+}
 .room_list_layout {
   margin-top: 20px;
 }

@@ -56,7 +56,7 @@ login.post("/", async (ctx) => {
       };
 
       // 更新token到数据库
-      let updateRet = await new Promise((resolve, reject) => {
+      await new Promise((resolve, reject) => {
         const sql_query = "update userInfo set token=? where accounter=?";
         const params_query = [myToken, accounter];
         return db.query(sql_query, params_query, (err, result) => {
@@ -66,7 +66,6 @@ login.post("/", async (ctx) => {
       })
 
     } else {
-      ctx.status = 401;
       ctx.body = {
         data: null,
         code: 1,
@@ -76,8 +75,11 @@ login.post("/", async (ctx) => {
     }
 
   } else {
-    ctx.status = 401;
-    ctx.body = "没有这个账号";
+    ctx.body = {
+      data: null,
+      code: 1,
+      msg: "没有这个账号"
+    };
 
   }
 

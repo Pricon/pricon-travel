@@ -1,6 +1,6 @@
 // 登陆页面
 <template>
-  <div>
+  <div class="login_layout">
     <LoginHeader></LoginHeader>
     <LoginComponent></LoginComponent>
     <FooterComponent></FooterComponent>
@@ -18,8 +18,17 @@ export default {
     LoginComponent,
     FooterComponent,
   },
+  activated() {
+    let token = localStorage.getItem("token");
+    if (token) {
+      this.$router.push("/");
+    }
+  },
 };
 </script>
 
-<style>
+<style scoped>
+.login_layout {
+  min-width: 1280px;
+}
 </style>

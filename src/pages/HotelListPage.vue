@@ -58,17 +58,10 @@ export default {
         },
       },
       keywordsArea: {},
+      isLogin: false,
     };
   },
   computed: {
-    isLogin() {
-      let token = localStorage.getItem("token");
-      if (token) {
-        return true;
-      } else {
-        return false;
-      }
-    },
     keywords() {
       let arr = [];
       let area = this.keywordsList.area;
@@ -96,6 +89,14 @@ export default {
     },
   },
   created() {
+    // 获取登录状态
+    let token = localStorage.getItem("token");
+    if (token) {
+      this.isLogin = true;
+    } else {
+      this.isLogin = false;
+    }
+
     if (this.$route.query.length != 0) {
       this.searchInfo.destination = this.$route.query.destination;
       this.searchInfo.startTime = parseInt(this.$route.query.startTime);
@@ -259,6 +260,14 @@ export default {
     },
   },
   async activated() {
+    // 获取登录状态
+    let token = localStorage.getItem("token");
+    if (token) {
+      this.isLogin = true;
+    } else {
+      this.isLogin = false;
+    }
+
     this.searchInfo.destination = this.$route.query.destination;
     this.searchInfo.startTime = parseInt(this.$route.query.startTime);
     this.searchInfo.endTime = parseInt(this.$route.query.endTime);
@@ -295,15 +304,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .hotel_list {
-  overflow-x: scroll;
+  margin: 0;
+  width: 100%;
   min-width: 1280px;
   height: 100%;
+  box-sizing: border-box;
 }
 .main_content {
   background-color: #f5f7fa;
-  padding: 15px 100px;
   margin-top: 15px;
+  padding: 15px 100px;
 }
 </style>

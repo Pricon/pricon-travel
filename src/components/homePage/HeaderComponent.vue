@@ -182,7 +182,7 @@ export default {
 /* 个人中心 */
 .login_register_layout .login,
 .user_center_layout .user {
-  width: 90px;
+  width: 110px;
   min-width: 90px;
   height: 30px;
   background-color: #f3f8fd;
