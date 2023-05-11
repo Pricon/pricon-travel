@@ -313,6 +313,15 @@ export default {
       this.$router.push(path);
     },
   },
+  deactivated() {
+    this.step = 1;
+    this.registerForm.telNumber = "";
+    this.registerForm.verificationCode = "";
+    this.registerForm.accounter = "";
+    this.registerForm.email = "";
+    this.registerForm.password = "";
+    this.registerForm.checkpass = "";
+  },
 };
 </script>
 

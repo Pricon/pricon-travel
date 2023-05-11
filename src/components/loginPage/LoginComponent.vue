@@ -100,6 +100,10 @@ export default {
       this.$router.push(path);
     },
   },
+  deactivated() {
+    this.loginForm.accounter = "";
+    this.loginForm.password = "";
+  },
 };
 </script>
 
