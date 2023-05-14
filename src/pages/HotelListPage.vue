@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       searchInfo: {
-        destination: "",
+        destination: "上海",
         startTime: 0,
         endTime: 0,
         roomNumber: 1,
@@ -97,7 +97,7 @@ export default {
       this.isLogin = false;
     }
 
-    if (this.$route.query.length != 0) {
+    if (this.$route.query.startTime) {
       this.searchInfo.destination = this.$route.query.destination;
       this.searchInfo.startTime = parseInt(this.$route.query.startTime);
       this.searchInfo.endTime = parseInt(this.$route.query.endTime);

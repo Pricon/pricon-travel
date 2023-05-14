@@ -21,7 +21,6 @@
           <div class="cancle_confirm">
             <el-popover
               placement="top-start"
-              title="标题"
               width="200"
               trigger="hover"
               content="订单预订成功后不可取消修改。若未入住将收取您全额房费(如用优惠券则以券后支付价为准）。"
@@ -30,7 +29,6 @@
             </el-popover>
             <el-popover
               placement="top-start"
-              title="标题"
               width="200"
               trigger="hover"
               content="预订此房型后可快速确认订单。"

@@ -1,30 +1,33 @@
 <template>
   <div class="hotel_cards">
-    <el-row v-for="hotelItem in hotelInfo" :key="hotelItem.id">
-      <el-card :body-style="{ padding: '0px' }">
-        <div class="handle_image">
-          <img :src="hotelItem.pic" class="image" />
-        </div>
-        <!-- 酒店信息 -->
-        <div class="hotel_details">
-          <div class="hotelName">{{ hotelItem.name }}</div>
-          <div class="rate">
-            <el-rate v-model="hotelItem.rate" disabled text-color="#ff9900">
-            </el-rate>
-            <div class="score_price">
-              <div class="rate_score_item">
-                <div class="rate_score">
-                  <span>{{ hotelItem.rate }}</span>
-                  <span>/{{ totalScore }}</span>
-                </div>
-                <span>超棒</span>
+    <el-card
+      :body-style="{ padding: '0px' }"
+      v-for="hotelItem in hotelInfo"
+      :key="hotelItem.id"
+      @click.native="toDetailPage(hotelItem)"
+    >
+      <div class="handle_image">
+        <img :src="hotelItem.pic" class="image" />
+      </div>
+      <!-- 酒店信息 -->
+      <div class="hotel_details">
+        <div class="hotelName">{{ hotelItem.name }}</div>
+        <div class="rate">
+          <el-rate v-model="hotelItem.rate" disabled text-color="#ff9900">
+          </el-rate>
+          <div class="score_price">
+            <div class="rate_score_item">
+              <div class="rate_score">
+                <span>{{ hotelItem.rate }}</span>
+                <span>/{{ totalScore }}</span>
               </div>
-              <div class="price">{{ hotelItem.price }}</div>
+              <span>超棒</span>
             </div>
+            <div class="price">{{ hotelItem.price }}</div>
           </div>
         </div>
-      </el-card>
-    </el-row>
+      </div>
+    </el-card>
   </div>
 </template>
 
@@ -36,6 +39,29 @@ export default {
     return {
       totalScore: 5,
     };
+  },
+  methods: {
+    toDetailPage(hotel) {
+      // 返回的keywords是字符串，这里转换成数组
+      let keywords = hotel.keywords;
+      let keyArray = keywords.split(",");
+      // 返回的services是字符串，这里转换成数组
+      let services = hotel.services;
+      let serviceArray = services.split(",");
+      this.$router.push({
+        path: "/hotels/details",
+        query: {
+          type: "jump",
+          destination: "上海",
+          hotelName: hotel.name,
+          hotelRate: hotel.rate,
+          hotelKeyword: keyArray,
+          hotelServices: serviceArray,
+          hotelPic: hotel.pic,
+          hotelPrice: hotel.price,
+        },
+      });
+    },
   },
 };
 </script>

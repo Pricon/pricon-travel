@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       searchInfo: {
-        destination: "",
+        destination: "上海",
         startTime: 0,
         endTime: 0,
         roomNumber: 1,
@@ -51,14 +51,16 @@ export default {
 
     let type = this.$route.query.type;
     if (type == "jump") {
-      this.searchInfo.destination = this.$route.query.destination;
-      this.searchInfo.startTime = parseInt(this.$route.query.startTime);
-      this.searchInfo.endTime = parseInt(this.$route.query.endTime);
-      this.searchInfo.roomNumber = parseInt(this.$route.query.roomNumber);
-      this.searchInfo.adultNumber = parseInt(this.$route.query.adultNumber);
-      this.searchInfo.childNumber = parseInt(this.$route.query.childNumber);
-      this.searchInfo.hotelLevel = this.$route.query.hotelLevel;
-      this.searchInfo.keywords = this.$route.query.keywords;
+      if (this.searchInfo.startTime) {
+        this.searchInfo.destination = this.$route.query.destination;
+        this.searchInfo.startTime = parseInt(this.$route.query.startTime);
+        this.searchInfo.endTime = parseInt(this.$route.query.endTime);
+        this.searchInfo.roomNumber = parseInt(this.$route.query.roomNumber);
+        this.searchInfo.adultNumber = parseInt(this.$route.query.adultNumber);
+        this.searchInfo.childNumber = parseInt(this.$route.query.childNumber);
+        this.searchInfo.hotelLevel = this.$route.query.hotelLevel;
+        this.searchInfo.keywords = this.$route.query.keywords;
+      }
       this.hotelInfo.name = this.$route.query.hotelName;
       this.hotelInfo.rate = parseInt(this.$route.query.hotelRate);
       this.hotelInfo.keywords = this.$route.query.hotelKeyword;
@@ -105,14 +107,16 @@ export default {
 
     let type = this.$route.query.type;
     if (type == "jump") {
-      this.searchInfo.destination = this.$route.query.destination;
-      this.searchInfo.startTime = parseInt(this.$route.query.startTime);
-      this.searchInfo.endTime = parseInt(this.$route.query.endTime);
-      this.searchInfo.roomNumber = parseInt(this.$route.query.roomNumber);
-      this.searchInfo.adultNumber = parseInt(this.$route.query.adultNumber);
-      this.searchInfo.childNumber = parseInt(this.$route.query.childNumber);
-      this.searchInfo.hotelLevel = this.$route.query.hotelLevel;
-      this.searchInfo.keywords = this.$route.query.keywords;
+      if (this.$route.query.startTime) {
+        this.searchInfo.destination = this.$route.query.destination;
+        this.searchInfo.startTime = parseInt(this.$route.query.startTime);
+        this.searchInfo.endTime = parseInt(this.$route.query.endTime);
+        this.searchInfo.roomNumber = parseInt(this.$route.query.roomNumber);
+        this.searchInfo.adultNumber = parseInt(this.$route.query.adultNumber);
+        this.searchInfo.childNumber = parseInt(this.$route.query.childNumber);
+        this.searchInfo.hotelLevel = this.$route.query.hotelLevel;
+        this.searchInfo.keywords = this.$route.query.keywords;
+      }
       this.hotelInfo.name = this.$route.query.hotelName;
       this.hotelInfo.rate = parseInt(this.$route.query.hotelRate);
       this.hotelInfo.keywords = this.$route.query.hotelKeyword;
