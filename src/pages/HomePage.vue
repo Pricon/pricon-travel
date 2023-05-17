@@ -41,6 +41,11 @@ export default {
     } else {
       this.isLogin = false;
     }
+    // 30分钟后移出accounter和token
+    setTimeout(function () {
+      localStorage.removeItem("token");
+      localStorage.removeItem("accounter");
+    }, 1000 * 60 * 30);
 
     const res = await this.$post("/home", {
       city: ["北京", "上海", "南京", "杭州"],
