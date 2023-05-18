@@ -173,7 +173,7 @@ export default {
       if (value === "") {
         callback(new Error("请输入邮箱"));
       } else {
-        const regex = /[\w]+@[A-z]+(\.[A-z]+){1,2}/g;
+        const regex = /[\w]+@([A-z]|[|0-9])+(\.[A-z]+){1,2}/g;
         if (!regex.test(value)) {
           callback(new Error("邮箱格式错误，请重新输入"));
         } else {

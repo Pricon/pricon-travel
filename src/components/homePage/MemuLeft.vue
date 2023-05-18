@@ -44,7 +44,6 @@ export default {
 /* 左侧菜单栏整体布局样式 */
 .menu_left_layout {
   width: 50px;
-  height: 100%;
   position: relative;
   z-index: 10000;
   cursor: pointer;
@@ -53,7 +52,8 @@ export default {
 
 .menu_left_inner {
   width: 50px;
-  height: 100vh;
+  height: 100%;
+  min-height: 1075px;
   border-right: 1px solid rgba(128, 128, 128, 0.4);
   display: flex;
   flex-direction: column;

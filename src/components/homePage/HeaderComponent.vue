@@ -116,7 +116,7 @@ export default {
 <style scoped>
 /* header栏整体布局 */
 .content_header {
-  width: 100%;
+  max-width: 1280px;
   height: 72px;
   display: flex;
   justify-content: space-between;

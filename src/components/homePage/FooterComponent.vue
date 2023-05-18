@@ -32,8 +32,6 @@ footer {
   margin-top: 80px;
 }
 .footer_info_layout {
-  width: 100%;
-  height: 100%;
   text-align: center;
 }
 .footer_info_layout,
