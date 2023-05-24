@@ -6,7 +6,9 @@
         <div>
           <span
             ><a href="#">Copyright©</a>2022-2023, <a href="#">logviv.com</a>.
-            All rights reserved.</span
+            All rights reserved.
+            <el-divider direction="vertical"></el-divider
+            >黔ICP备2023004571号-1</span
           >
         </div>
         <div>
